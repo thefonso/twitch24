@@ -15,16 +15,13 @@ define(function() {
 
   //methods
   Codelib.prototype.gotjson = function(){
-    var result = $.getJSON("https://api.twitch.tv/kraken/streams/MedryBW",function(json){
-      if (json.length==0){
-        console.log('error no json');
-        console.dir(json);
-        return json;
-      }else{
-        console.log('got json: ');
-        console.dir(json);
-        return json;
-      }
+    var result = $.getJSON("https://api.twitch.tv/kraken/streams/MedryBW")
+        .done(function(data){
+          return data;
+        })
+        .fail(function(jqxhr, textStatus, error){
+          var err = textStatus + ", " + error;
+          console.log( "Request Failed: " + err );
     });
     return result;
   };

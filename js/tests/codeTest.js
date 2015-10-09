@@ -1,5 +1,5 @@
 "use strict";
-define(['src/codelib','jquery'], function(Codelib){
+define(['Codelib','jquery'], function(Codelib,$){
   var run = function(){
     QUnit.test('code should return the sum of the two supplied numbers.',function(assert){
       var codelib = new Codelib();
@@ -9,8 +9,19 @@ define(['src/codelib','jquery'], function(Codelib){
 
     QUnit.test("As a user, I can see whether Free Code Camp is currently streaming on Twitch.tv",function(assert){
       var codelib = new Codelib();
-      console.log('in test: ' + codelib.gotjson());
-      assert.equal(codelib.gotjson().readyState,1, 'should be true');
+      //qunit needs this assert.async() to make asycronus test
+      var done = assert.async();
+      //run the .done call back here to test result
+      codelib.gotjson().done(function(result){
+        assert.notEqual(result.stream,null, 'should not be true');
+        done();
+      });
+
+    });
+
+    QUnit.test("I can see an array of channel names",function(assert){
+      var codelib = new Codelib();
+      assert.ok(codelib.channels() instanceof Array,'should contain array')
     });
 
     QUnit.skip("As a user, I can click the status output and be sent directly to the Free Code Camp's Twitch.tv channel");

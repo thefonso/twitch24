@@ -1,5 +1,5 @@
 "use strict";
-require.config({
+requirejs.config({
   paths: {
     jquery: [
       '//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery',
@@ -11,7 +11,10 @@ require.config({
       //If the CDN location fails, load from this location
       'lib/bootstrap-335/js/bootstrap'
     ],
-    'QUnit':'lib/qunit/qunit-1.19.0'
+    'QUnit':'lib/qunit/qunit-1.19.0',
+    'Codelib':'src/codelib',
+    'Main':'src/main'
+
   },
   shim: {
     'QUnit':{
@@ -23,12 +26,14 @@ require.config({
     }
   }
 });
-
+//logic file
+requirejs(['src/main']);
 //require unit test.
-require(['QUnit','tests/codeTest'],
-  function(QUnit,codeTest){
+requirejs(['QUnit','tests/codeTest','tests/mainTest'],
+    function(QUnit,codeTest,mainTest){
     //run tests
     codeTest.run();
+    mainTest.run();
     //start QUnit
     QUnit.load();
     QUnit.start();

@@ -1,11 +1,11 @@
 "use strict";
+
 define(function() {
   //constructor
   function Codelib(a,b){
     // if u had passed vars
-    this.a = a;
     this.b = b;
-
+    this.a = a;
   }
 
   //methods
@@ -14,16 +14,31 @@ define(function() {
   };
 
   //methods
-  Codelib.prototype.gotjson = function(){
-    var result = $.getJSON("https://api.twitch.tv/kraken/streams/MedryBW")
-        .done(function(data){
-          return data;
-        })
-        .fail(function(jqxhr, textStatus, error){
-          var err = textStatus + ", " + error;
-          console.log( "Request Failed: " + err );
-    });
-    return result;
+  Codelib.prototype.gotjson = function() {
+     return $.getJSON("https://api.twitch.tv/kraken/streams/MedryBW");
+    //TODO make a .done and.fail here
+  };
+
+  Codelib.prototype.channels = function(){
+    var streamers = [
+      'freecodecamp',
+      'GeoffStorbeck',
+      'terakilobyte',
+      'habathcx',
+      'notmichaelmcdonald',
+      'RobotCaleb',
+      'medrybw',
+      'comster404',
+      'brunofin',
+      'thomasballinger',
+      'joe_at_underflow',
+      'noobs2ninjas',
+      'mdwasp',
+      'beohoff',
+      'xenocomagain'
+    ];
+
+    return streamers;
   };
 
   return Codelib;

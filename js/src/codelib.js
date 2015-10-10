@@ -15,8 +15,7 @@ define(function() {
 
   //methods
   Codelib.prototype.gotjson = function(channel) {
-     return $.getJSON("https://api.twitch.tv/kraken/streams/"+channel);
-    //TODO make a .done and.fail here
+    return $.getJSON("https://api.twitch.tv/kraken/streams/"+channel)
   };
 
   Codelib.prototype.channels = function(){

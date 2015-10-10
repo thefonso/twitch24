@@ -9,31 +9,40 @@ define(['Codelib','jquery'],function(Codelib,$){
 
   //TODO split into online and offline methods, return local array 4 each
 
-  function online(){
-    console.log('called online');
-    //foreach item in channels
-    codeLib.channels().forEach(function(item){
-      console.log(item);
-      // run gotJSON
-      codeLib.gotjson(item).done(function(result){
-        var onlinearray  = [];
-        //if stream is not null add to onlinearray
-        if (result.stream != null) {
-          // push into offline array
-          onlinearray.push(item);
-          console.log('ONLINE array: ' + onlinearray);
+  function online(item){
+      codeLib.gotjson(item)
+      .done(function(result) {
+        if(result.stream != null) {
+          // do stuff
+          var node = document.createElement('li');
+          var textnode = document.createTextNode(item);
+          node.appendChild(textnode);
+          document.getElementById("onlinechannels").appendChild(node);
         }
-        return onlinearray;
+      })
+      .fail(function(x) {
+            // Tell the user something bad happened
       });
-
-    });
   }
 
-  console.dir(online());
+  function offline(item){
+    codeLib.gotjson(item)
+        .done(function(result) {
+          if(result.stream == null) {
+            // do stuff
+            var node = document.createElement('li');
+            var textnode = document.createTextNode(item);
+            node.appendChild(textnode);
+            document.getElementById("offchannels").appendChild(node);
+          }
+        })
+        .fail(function(x) {
+          // Tell the user something bad happened
+        });
+  }
 
   $(document).ready(function(){
     //for each name in channels display name
-
     codeLib.channels().forEach(function(item){
       var node = document.createElement('li');
       var textnode = document.createTextNode(item);
@@ -41,16 +50,13 @@ define(['Codelib','jquery'],function(Codelib,$){
       document.getElementById("allchannels").appendChild(node);
     });
 
-    //console.dir(online());
+    codeLib.channels().forEach(function(item){
+      online(item);
+    });
 
-    //online().forEach(function(item){
-    //  console.log(item);
-    //  var node = document.createElement('li');
-    //  var textnode = document.createTextNode(item);
-    //  node.appendChild(textnode);
-    //  document.getElementById("onlinechannels").appendChild(node);
-    //});
-
+    codeLib.channels().forEach(function(item){
+      offline(item);
+    });
   });
 
 

@@ -1,11 +1,13 @@
 "use strict";
-define(['src/main','jquery'], function(Main,$){
+define(['Codelib','src/main','jquery'], function(Codelib,Main,$){
+
   var run = function(){
-    QUnit.skip('display array values on main page',function(assert){
-      //var codelib = new Codelib();
-      //assert.equal(codelib.code(-2,1),-1, 'The return should be -1.');
+    QUnit.test("I can see an array of channel names",function(assert){
+      var codelib = new Codelib();
+      assert.ok(codelib.channels() instanceof Array,'should contain array')
     });
   };
   return {run: run}
+
 });
 

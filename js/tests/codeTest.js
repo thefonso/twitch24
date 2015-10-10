@@ -11,8 +11,9 @@ define(['Codelib','jquery'], function(Codelib,$){
       var codelib = new Codelib();
       //qunit needs this assert.async() to make asycronus test
       var done = assert.async();
+      var channel = "medrybw";
       //run the .done call back here to test result
-      codelib.gotjson().done(function(result){
+      codelib.gotjson(channel).done(function(result){
         assert.notEqual(result.stream,null, 'should not be true');
         done();
       });
@@ -22,6 +23,9 @@ define(['Codelib','jquery'], function(Codelib,$){
     QUnit.test("I can see an array of channel names",function(assert){
       var codelib = new Codelib();
       assert.ok(codelib.channels() instanceof Array,'should contain array')
+    });
+    QUnit.test("I can return an array list of offline streamers ",function(assert){
+
     });
 
     QUnit.skip("As a user, I can click the status output and be sent directly to the Free Code Camp's Twitch.tv channel");

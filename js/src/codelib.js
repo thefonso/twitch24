@@ -3,19 +3,19 @@
 define(function() {
   //constructor
   function Codelib(a,b){
-    // if u had passed vars
+    // if u had passed vars, maybe future channel names
     this.b = b;
     this.a = a;
   }
 
-  //methods
+  //test method
   Codelib.prototype.code = function(a, b) {
     return (a + b);
   };
 
   //methods
-  Codelib.prototype.gotjson = function() {
-     return $.getJSON("https://api.twitch.tv/kraken/streams/MedryBW");
+  Codelib.prototype.gotjson = function(channel) {
+     return $.getJSON("https://api.twitch.tv/kraken/streams/"+channel);
     //TODO make a .done and.fail here
   };
 
@@ -37,6 +37,14 @@ define(function() {
       'beohoff',
       'xenocomagain'
     ];
+
+    //show all
+    //show online - and - what is streaming
+
+    //show offline
+    Codelib.prototype.offline = function(channel){
+
+    };
 
     return streamers;
   };

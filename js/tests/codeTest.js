@@ -25,7 +25,7 @@ define(['Codelib','jquery'], function(Codelib,$){
       assert.ok(codelib.channels() instanceof Array,'should contain array')
     });
     QUnit.test("I can return an array list of offline streamers ",function(assert){
-
+      var codelib = new Codelib();
     });
 
     QUnit.skip("As a user, I can click the status output and be sent directly to the Free Code Camp's Twitch.tv channel");

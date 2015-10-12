@@ -18,6 +18,10 @@ define(function() {
     return $.getJSON("https://api.twitch.tv/kraken/streams/"+channel)
   };
 
+  Codelib.prototype.gotjsonusers = function(channel) {
+    return $.getJSON("https://api.twitch.tv/kraken/users/"+channel)
+  };
+
   Codelib.prototype.channels = function(){
     var streamers = [
       'freecodecamp',

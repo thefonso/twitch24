@@ -24,21 +24,18 @@ define(function() {
 
   Codelib.prototype.channels = function(){
     var streamers = [
-      'freecodecamp',
-      'GeoffStorbeck',
+
+      'habathcx', //yes
       'terakilobyte',
-      'habathcx',
-      'notmichaelmcdonald',
-      'RobotCaleb',
-      'medrybw',
-      'comster404',
-      'brunofin',
+      'freecodecamp', //yes
+      'medrybw', //yes
       'thomasballinger',
-      'joe_at_underflow',
-      'noobs2ninjas',
-      'mdwasp',
-      'beohoff',
-      'xenocomagain'
+      'noobs2ninjas', //yes
+      'RobotCaleb',
+      'beohoff', //yes
+      'GeoffStorbeck', //yes
+      'comster404',
+      'brunofin'
     ];
 
     //show all

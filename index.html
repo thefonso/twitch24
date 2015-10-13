@@ -8,49 +8,35 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="js/lib/bootstrap-335/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="css/style.css"/>
+  <script src="js/holder.js"></script>
   <!--<script src="js/src/codelib.js"></script>-->
   <!--<script src="js/src/main.js"></script>-->
 
 </head>
 <body>
+<!--<div class="container center no-gutter">-->
+  <!--<div id="testchannels" class="no-gutter col-md-12">-->
+    <!--<a href="test url">-->
+    <!--<div class="channel no-gutter col-md-2">-->
+      <!--<div class="logo col-md-3"><img src="holder.js/32x32" alt=""/></div>-->
+      <!--<div class="name col-md-9">test name</div>-->
+      <!--<div class='bio col-md-12'>test bio</div>-->
+      <!--<div class="status col-md-12">test status</div>-->
+    <!--</div>-->
+    <!--</a>-->
+  <!--</div>-->
+<!--</div>-->
 
-  <div>
-    <h3>online</h3>
-    <ul id="onlinechannels"></ul>
-  </div>
-  <div>
-    <h3>offline</h3>
-    <ul id="offchannels"></ul>
-  </div>
-  <div>
-    <h3>all</h3>
-    <ul id="allchannels"></ul>
-  </div>
+<div class="container center no-gutter">
+    <div id="onlinechannels" class="no-gutter col-md-12"></div>
+    <div id="offchannels" class="no-gutter col-md-12"></div>
+    <div id="allchannels" class="no-gutter col-md-12"></div>
+</div>
 
-<!--todo
-  <div id="onchannels">
-    <div id="channel">
-      <div id="name"></div>
-      <div id='game'></div>
-      <div id="logo"></div>
-      <div id="status"></div>
-      <div id="url"></div>
-    </div>
-  </div>
--->
-  <!--todo
-    <div id="offlinechannels">
-      <div id="channel">
-        <div id="name"></div>
-        <div id='bio'></div>
-        <div id="logo"></div>
-        <div id="status"></div>
-        <div id="url"></div>
-      </div>
-    </div>
-  -->
-  <div id="qunit"></div>
-  <div id="qunit-fixture"></div>
+
+
+  <!--<div id="qunit"></div>-->
+  <!--<div id="qunit-fixture"></div>-->
 </body>
 <!--//bottom so page loads first. no wait on scripts-->
 <script>

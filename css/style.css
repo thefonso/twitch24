@@ -1,3 +1,54 @@
+
+.no-gutter > [class*='col-'] {
+  padding-right:0;
+  padding-left:0;
+}
 .status{
-  color: green;
+  color: #FF46DA;
+}
+body{
+  background-color: #7E46FF;
+}
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+.rounded {
+  border-radius: 10px;
+}
+.testchannels{
+  padding: 0;
+}
+.channel{
+  color: white;
+  width: 12em;
+  height: 12em;
+  padding: 0;
+  border: 0.2em solid white;
+  margin: 0.2em;
+  border-radius: 10px;
+  box-shadow: 5px 5px 2px #464646;
+  overflow: hidden;
+  position: relative;
+}
+.logo{
+  float: left;
+}
+.logo img{
+  height: 32px;
+  width: 32px;
+}
+.name{
+  float: left;
+}
+.bio{
+  color: #53A7FF;
+  font-size: small;
+}
+.status{
+  position: absolute;
+  bottom: 0;
+}
+.url{
+
 }

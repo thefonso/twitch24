@@ -37,59 +37,116 @@ define(['Codelib','jquery'],function(Codelib,$){
       codeLib.gotjson(item)
       .done(function(result) {
         if(result.stream != null) {
-          // do stuff
-          //console.dir(result.stream);
+          var display_name;
+          var stream_game;
+          var channel_logo;
+          var channel_status;
+
+          if(result.stream.channel.display_name != null){
+            display_name = result.stream.channel.display_name;
+          }else{
+            display_name = 'empty';
+          }
+
+          if(result.stream.game != null){
+            stream_game = result.stream.game;
+          }else{
+            stream_game = 'empty';
+          }
+
+          if(result.stream.channel.logo != null){
+            channel_logo = result.stream.channel.logo;
+          }else{
+            channel_logo = 'empty';
+          }
+
+          if(result.stream.channel.status != null){
+            channel_status = result.stream.channel.status
+          }else{
+            channel_status = 'empty';
+          }
+
+          var url = document.createElement('a');
+              //url.setAttribute('href','https://www.twitch.tv/streams/'+item);
+              url.setAttribute('target','_blank');
 
           var channel = document.createElement('div');
-          channel.setAttribute('id','channel');
+              channel.setAttribute('class','channel no-gutter col-md-2');
 
           var name = document.createElement('div');
-          name.setAttribute('id','name');
-          var textname = document.createTextNode(result.stream.channel.display_name);
-          name.appendChild(textname);
+              name.setAttribute('class','name col-md-9');
+          var textname = document.createTextNode(display_name);
+              name.appendChild(textname);
+
 
           var game = document.createElement('div');
-          game.setAttribute('id','game');
-          var textgame = document.createTextNode(result.stream.game);
-          game.appendChild(textgame);
+              game.setAttribute('class','game');
+          var textgame = document.createTextNode(stream_game);
+              game.appendChild(textgame);
+
 
           var logo = document.createElement('div');
-          logo.setAttribute('id','logo');
-          var textlogo = document.createTextNode(result.stream.channel.logo);
-          logo.appendChild(textlogo);
+              logo.setAttribute('class','logo col-md-3');
+          var img = document.createElement('img');
+              img.setAttribute('src',channel_logo);
+              logo.appendChild(img);
+
 
           var status = document.createElement('div');
-          status.setAttribute('id','status');
-          var textstatus = document.createTextNode(result.stream.channel.status);
-          status.appendChild(textstatus);
-
-          var url = document.createElement('div');
-          url.setAttribute('id','url');
-          var texturl = document.createTextNode(result.stream.channel.url);
-          url.appendChild(texturl);
-
-          var followers = document.createElement('div');
-          followers.setAttribute('id','followers');
-          var textfollowers = document.createTextNode(result.stream.channel.followers);
-          followers.appendChild(textfollowers);
+              status.setAttribute('class','status col-md-12');
+          var textstatus = document.createTextNode(channel_status);
+              status.appendChild(textstatus);
 
 
+
+
+          //var followers = document.createElement('div');
+          //followers.setAttribute('class','followers');
+          //if(result.stream.channel.followers != null) {
+          //  var textfollowers = document.createTextNode(result.stream.channel.followers);
+          //  followers.appendChild(textfollowers);
+          //}
+
+
+
+          document.getElementById("onlinechannels").appendChild(channel).appendChild(logo);
           document.getElementById("onlinechannels").appendChild(channel).appendChild(name);
           document.getElementById("onlinechannels").appendChild(channel).appendChild(game);
-          document.getElementById("onlinechannels").appendChild(channel).appendChild(logo);
           document.getElementById("onlinechannels").appendChild(channel).appendChild(status);
-          document.getElementById("onlinechannels").appendChild(channel).appendChild(url);
-          document.getElementById("onlinechannels").appendChild(channel).appendChild(followers);
+          //document.getElementById("onlinechannels").appendChild(channel).appendChild(url);
+          //document.getElementById("onlinechannels").appendChild(channel).appendChild(followers);
 
         }else{
           //pull results from here ...https://api.twitch.tv/kraken/users/freecodecamp
           codeLib.gotjsonusers(item)
           .done(function(result) {
             console.dir(result);
+                var display_name;
+                var channel_logo;
+                var bio_result;
+
+                if(result.display_name != null){
+                  display_name = result.display_name;
+                }else{
+                  display_name = 'empty';
+                }
+
+                if(result.bio != null){
+                  bio_result = result.bio;
+                }else{
+                  bio_result = 'empty';
+                }
+
+                if(result.logo != null){
+                  channel_logo = result.logo;
+                }else{
+                  channel_logo = 'empty';
+                }
+
 
 
             var url = document.createElement('a');
-                url.setAttribute('href','http://www.twitch.tv/'+item+'/profile');
+                //url.setAttribute('href','http://www.twitch.tv/'+item+'/profile');
                 url.setAttribute('target','_blank');
 
             var channel = document.createElement('div');
@@ -98,22 +155,22 @@ define(['Codelib','jquery'],function(Codelib,$){
             var logo = document.createElement('div');
                 logo.setAttribute('class','logo col-md-3');
             var img = document.createElement('img');
-                if(result.logo != null){
-                  img.setAttribute('src',result.logo);
+
+                  img.setAttribute('src',channel_logo);
                   logo.appendChild(img);
-                }
+
             var name = document.createElement('div');
                 name.setAttribute('class','name col-md-9');
-                if(result.display_name != null){
-                  var textname = document.createTextNode(result.display_name);
+
+                  var textname = document.createTextNode(display_name);
                   name.appendChild(textname);
-                }
+
             var bio = document.createElement('div');
                 bio.setAttribute('class','bio col-md-12');
-                if(result.bio != null){
-                  var textbio = document.createTextNode(result.bio.substring(0, 100));
+
+                  var textbio = document.createTextNode(bio_result.substring(0, 100));
                   bio.appendChild(textbio);
-                }
+
             var status = document.createElement('div');
                 status.setAttribute('class','status col-md-12');
             var textstatus = document.createTextNode('offline');

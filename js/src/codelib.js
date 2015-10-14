@@ -17,9 +17,12 @@ define(function() {
   Codelib.prototype.gotjson = function(channel) {
     return $.getJSON("https://api.twitch.tv/kraken/streams/"+channel)
   };
-
   Codelib.prototype.gotjsonusers = function(channel) {
     return $.getJSON("https://api.twitch.tv/kraken/users/"+channel)
+  };
+//TODO - use this to grab the top games
+  Codelib.prototype.gottop = function() {
+    return $.getJSON("https://api.twitch.tv/kraken/games/top")
   };
 
   Codelib.prototype.channels = function(){
@@ -34,8 +37,10 @@ define(function() {
       'RobotCaleb',
       'beohoff', //yes
       'GeoffStorbeck', //yes
-      'comster404',
-      'brunofin'
+      'leagueoflegends',
+      'ThunderCast'
+      //'comster404',
+      //'brunofin'
     ];
 
     //show all

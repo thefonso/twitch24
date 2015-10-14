@@ -4,10 +4,12 @@
   padding-left:0;
 }
 .status{
-  color: #FF46DA;
+  color: #7E46FF;
+  /*color: #53A7FF;*/
 }
 body{
-  background-color: #7E46FF;
+  /*background-color: #7E46FF;*/
+  background-color: #53A7FF;
 }
 .col-centered{
   float: none;
@@ -42,7 +44,7 @@ body{
   float: left;
 }
 .bio{
-  color: #53A7FF;
+  color: #FF46DA;
   font-size: small;
 }
 .status{

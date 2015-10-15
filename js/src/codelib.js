@@ -14,11 +14,11 @@ define(function() {
   };
 
   //methods
-  Codelib.prototype.gotjson = function(channel) {
-    return $.getJSON("https://api.twitch.tv/kraken/streams/"+channel)
+  Codelib.prototype.gotjson = function(channel,client_id) {
+    return $.getJSON("https://api.twitch.tv/kraken/streams/"+channel+client_id)
   };
-  Codelib.prototype.gotjsonusers = function(channel) {
-    return $.getJSON("https://api.twitch.tv/kraken/users/"+channel)
+  Codelib.prototype.gotjsonusers = function(channel,client_id) {
+    return $.getJSON("https://api.twitch.tv/kraken/users/"+channel+client_id)
   };
 //TODO - use this to grab the top games
   Codelib.prototype.gottop = function() {

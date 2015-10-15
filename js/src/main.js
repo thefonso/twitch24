@@ -34,7 +34,8 @@ define(['Codelib','jquery'],function(Codelib,$){
   //}
 
   function online(item){
-      codeLib.gotjson(item)
+    var client_id = '?client_id=l91ohh8zyji3s3xztrc3w5j8r21wuak&callback=?';
+      codeLib.gotjson(item,client_id)
       .done(function(result) {
         if(result.stream != null) {
           var display_name;
@@ -67,7 +68,7 @@ define(['Codelib','jquery'],function(Codelib,$){
           }
 
           var url = document.createElement('a');
-              url.setAttribute('href','https://www.twitch.tv/streams/'+item);
+              url.setAttribute('href','https://www.twitch.tv/streams/'+item+client_id);
               url.setAttribute('target','_blank');
 
           var channel = document.createElement('div');
@@ -118,7 +119,8 @@ define(['Codelib','jquery'],function(Codelib,$){
 
         }else{
           //pull results from here ...https://api.twitch.tv/kraken/users/freecodecamp
-          codeLib.gotjsonusers(item)
+          var client_id = '?client_id=l91ohh8zyji3s3xztrc3w5j8r21wuak&callback=?';
+          codeLib.gotjsonusers(item,client_id)
           .done(function(result) {
             console.dir(result);
                 var display_name;

@@ -67,7 +67,7 @@ define(['Codelib','jquery'],function(Codelib,$){
           }
 
           var url = document.createElement('a');
-              //url.setAttribute('href','https://www.twitch.tv/streams/'+item);
+              url.setAttribute('href','https://www.twitch.tv/streams/'+item);
               url.setAttribute('target','_blank');
 
           var channel = document.createElement('div');
@@ -146,7 +146,7 @@ define(['Codelib','jquery'],function(Codelib,$){
 
 
             var url = document.createElement('a');
-                //url.setAttribute('href','http://www.twitch.tv/'+item+'/profile');
+                url.setAttribute('href','http://www.twitch.tv/'+item+'/profile');
                 url.setAttribute('target','_blank');
 
             var channel = document.createElement('div');

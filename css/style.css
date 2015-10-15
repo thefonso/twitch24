@@ -16,6 +16,9 @@ body{
   /*background-color: #7E46FF;*/
   background-color: #53A7FF;
 }
+.special-width{
+  width:77em;
+}
 .col-centered{
   float: none;
   margin: 0 auto;
@@ -34,7 +37,7 @@ body{
   border: 0.2em solid white;
   margin: 0.2em;
   border-radius: 10px;
-  box-shadow: 5px 5px 2px #464646;
+  box-shadow: 2px 2px 4px #464646;
   overflow: hidden;
   position: relative;
 }

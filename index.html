@@ -2,39 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Twitch info</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Twitch24</title>
   <link rel="stylesheet" href="css/qunit-1.19.0.css">
   <!-- Bootstrap compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="js/lib/bootstrap-335/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="css/style.css"/>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans|Lato:300|Exo+2:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/pure-drawer.css"/>
   <script src="js/holder.js"></script>
-
-
 
 </head>
 <body>
-<!--NOTE: this is what the JS code builds-->
-<!--<div class="container center no-gutter">-->
-  <!--<div id="testchannels" class="no-gutter col-md-12">-->
-    <!--<a href="test url">-->
-    <!--<div class="channel no-gutter col-md-2">-->
-      <!--<div class="logo col-md-3"><img src="holder.js/32x32" alt=""/></div>-->
-      <!--<div class="name col-md-9">test name</div>-->
-      <!--<div class='bio col-md-12'>test bio</div>-->
-      <!--<div class="status col-md-12">test status</div>-->
-    <!--</div>-->
-    <!--</a>-->
-  <!--</div>-->
-<!--</div>-->
+<div class="pure-container" data-effect="pure-effect-push">
+  <input type="checkbox" id="pure-toggle-left" class="pure-toggle" data-toggle="left"/>
+  <label class="pure-toggle-label" for="pure-toggle-left" data-toggle-label="left"><span class="pure-toggle-icon"></span></label>
 
-<div class="container special-width no-gutter">
-    <div id="maintitle" class="no-gutter text-center col-md-12">TWITCH24</div>
-    <div id="onlinechannels" class="no-gutter col-md-12"></div>
-    <div id="offchannels" class="no-gutter col-md-12"></div>
-    <div id="allchannels" class="no-gutter col-md-12"></div>
+  <nav class="pure-drawer" data-position="left">
+    <p style="padding: 100px 20px; margin: 0;">
+    <ul>
+      <li><a href="">all</a></li>
+      <li><a href="">online</a></li>
+      <li><a href="">offline</a></li>
+      <li>--------</li>
+      <li><a href="">update list</a></li>
+    </ul>
+    </p>
+
+  </nav>
+
+  <div class="pure-pusher-container">
+    <div class="pure-pusher">
+      <!--<p style="width: 300px; height: 1800px; margin: 100px auto;">-->
+      <div class="container special-width no-gutter">
+        <div id="maintitle" class="no-gutter text-center col-md-12">TWITCH24</div>
+        <div id="onlinechannels" class="no-gutter col-md-12"></div>
+        <div id="offchannels" class="no-gutter col-md-12"></div>
+        <div id="allchannels" class="no-gutter col-md-12"></div>
+      </div>
+      <!--</p>-->
+    </div>
+  </div>
+
+  <label class="pure-overlay" for="pure-toggle-left" data-overlay="left"></label>
 </div>
+
+
 
 
 

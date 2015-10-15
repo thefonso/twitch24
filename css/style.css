@@ -4,8 +4,13 @@
   padding-left:0;
 }
 .status{
-  color: #7E46FF;
-  /*color: #53A7FF;*/
+
+}
+.green{
+  color: green;
+}
+.red{
+  color: darkred;
 }
 body{
   /*background-color: #7E46FF;*/

@@ -68,7 +68,7 @@ define(['Codelib','jquery'],function(Codelib,$){
           }
 
           var url = document.createElement('a');
-              url.setAttribute('href','https://www.twitch.tv/streams/'+item+client_id);
+              url.setAttribute('href','http://www.twitch.tv/'+item+'/profile');
               url.setAttribute('target','_blank');
 
           var channel = document.createElement('div');

@@ -12,9 +12,20 @@
 .red{
   color: darkred;
 }
+html * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a {
+  color: #3f729b;
+  text-decoration: none;
+  font-family: "Open Sans", sans-serif;
+}
 body{
   /*background-color: #7E46FF;*/
   background-color: #53A7FF;
+  /*font-size: 100%;*/
+  font-family: 'Lato', sans-serif;
 }
 .special-width{
   width:77em;
@@ -49,10 +60,11 @@ body{
   width: 32px;
 }
 .name{
+  color: dimgrey;
   float: left;
 }
 .bio{
-  color: #FF46DA;
+  /*color: #FF46DA;*/
   font-size: small;
 }
 .status{
@@ -61,4 +73,9 @@ body{
 }
 .url{
 
+}
+#maintitle{
+  font-size: 5em;
+  /*font-weight: 100;*/
+  font-family: 'Lato', sans-serif;
 }

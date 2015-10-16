@@ -48,7 +48,7 @@ define(['Codelib','jquery'],function(Codelib,$){
           if(result.stream.channel.logo != null){
             channel_logo = result.stream.channel.logo;
           }else{
-            channel_logo = 'empty';
+            channel_logo = 'images/twitch.png';
           }
 
           if(result.stream.channel.status != null){
@@ -123,7 +123,7 @@ define(['Codelib','jquery'],function(Codelib,$){
                 if(result.logo != null){
                   channel_logo = result.logo;
                 }else{
-                  channel_logo = 'empty';
+                  channel_logo = 'images/twitch.png';
                 }
 
             var url = document.createElement('a');

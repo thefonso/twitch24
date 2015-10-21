@@ -7,7 +7,7 @@ define(['Codelib','jquery'],function(Codelib,$){
   //show online - and - what is streaming
   //show offline
 
-  //TODO split into online and offline methods, return local array 4 each
+  //TODO split into online and offline methods, return local array for each
 
   //NOTE: this is what the JS code builds
   //<div class="container center no-gutter">
@@ -29,7 +29,6 @@ define(['Codelib','jquery'],function(Codelib,$){
       .done(function(result) {
         if(result.stream != null) {
           var display_name;
-          var stream_game;
           var channel_logo;
           var channel_status;
 
@@ -37,12 +36,6 @@ define(['Codelib','jquery'],function(Codelib,$){
             display_name = result.stream.channel.display_name;
           }else{
             display_name = 'empty';
-          }
-
-          if(result.stream.game != null){
-            stream_game = result.stream.game;
-          }else{
-            stream_game = 'empty';
           }
 
           if(result.stream.channel.logo != null){
@@ -69,12 +62,6 @@ define(['Codelib','jquery'],function(Codelib,$){
           var textname = document.createTextNode(display_name);
               name.appendChild(textname);
 
-          var game = document.createElement('div');
-              game.setAttribute('class','game');
-          var textgame = document.createTextNode(stream_game);
-              game.appendChild(textgame);
-
-
           var logo = document.createElement('div');
               logo.setAttribute('class','logo col-md-3');
           var img = document.createElement('img');
@@ -94,16 +81,12 @@ define(['Codelib','jquery'],function(Codelib,$){
           document.getElementById("onlinechannels").appendChild(url).appendChild(channel).appendChild(logo);
           document.getElementById("onlinechannels").appendChild(url).appendChild(channel).appendChild(name);
           document.getElementById("onlinechannels").appendChild(url).appendChild(channel).appendChild(bio);
-          //document.getElementById("onlinechannels").appendChild(url).appendChild(channel).appendChild(game);
           document.getElementById("onlinechannels").appendChild(url).appendChild(channel).appendChild(status);
-          //document.getElementById("onlinechannels").appendChild(url).appendChild(channel).appendChild(followers);
 
         }else{
-          //pull results from here ...https://api.twitch.tv/kraken/users/freecodecamp
           var client_id = '?client_id=l91ohh8zyji3s3xztrc3w5j8r21wuak&callback=?';
           codeLib.gotjsonusers(item,client_id)
           .done(function(result) {
-            console.dir(result);
                 var display_name;
                 var channel_logo;
                 var bio_result;
@@ -114,16 +97,16 @@ define(['Codelib','jquery'],function(Codelib,$){
                   display_name = 'empty';
                 }
 
-                if(result.bio != null){
-                  bio_result = result.bio;
-                }else{
-                  bio_result = 'empty';
-                }
-
                 if(result.logo != null){
                   channel_logo = result.logo;
                 }else{
                   channel_logo = 'images/twitch.png';
+                }
+
+                if(result.bio != null){
+                  bio_result = result.bio;
+                }else{
+                  bio_result = 'empty';
                 }
 
             var url = document.createElement('a');
@@ -133,16 +116,16 @@ define(['Codelib','jquery'],function(Codelib,$){
             var channel = document.createElement('div');
                 channel.setAttribute('class','channel no-gutter col-md-2');
 
+            var name = document.createElement('div');
+                name.setAttribute('class','name col-md-9');
+                var textname = document.createTextNode(display_name);
+                name.appendChild(textname);
+
             var logo = document.createElement('div');
                 logo.setAttribute('class','logo col-md-3');
             var img = document.createElement('img');
                 img.setAttribute('src',channel_logo);
                 logo.appendChild(img);
-
-            var name = document.createElement('div');
-                name.setAttribute('class','name col-md-9');
-                var textname = document.createTextNode(display_name);
-                name.appendChild(textname);
 
             var bio = document.createElement('div');
                 bio.setAttribute('class','bio col-md-12');

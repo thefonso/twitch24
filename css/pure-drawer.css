@@ -78,7 +78,7 @@ html, body {
     height: 3px;
     width: 35px;
     cursor: pointer;
-    background: #5d809d;
+    background: #1f2f3a;
     display: block;
     content: '';
     transition: all 500ms ease-in-out; }

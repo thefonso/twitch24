@@ -14,18 +14,16 @@ define(function() {
   };
 
   //methods
-  Codelib.prototype.gotjson = function(channel,client_id) {
-    return $.getJSON("https://api.twitch.tv/kraken/streams/"+channel+client_id)
-  };
-  Codelib.prototype.gotjsonusers = function(channel,client_id) {
-    return $.getJSON("https://api.twitch.tv/kraken/users/"+channel+client_id)
-  };
-//TODO - use this to grab the top games
-  Codelib.prototype.gottop = function() {
-    return $.getJSON("https://api.twitch.tv/kraken/games/top")
+  Codelib.prototype.gotjson = function(apiurl,channel,client_id) {
+    return $.getJSON("https://api.twitch.tv/kraken/"+apiurl+"/"+channel+client_id)
   };
 
-  Codelib.prototype.channels = function(){
+//TODO - use this to grab the top games
+//  Codelib.prototype.gottop = function() {
+//    return $.getJSON("https://api.twitch.tv/kraken/games/top")
+//  };
+
+   Codelib.prototype.channels = function(){
     var streamers = [
 
       'habathcx', //yes

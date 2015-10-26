@@ -18,38 +18,56 @@ define(function() {
     return $.getJSON("https://api.twitch.tv/kraken/"+apiurl+"/"+channel+client_id)
   };
 
-//TODO - use this to grab the top games
+//  TODO - use this to grab the top games
 //  Codelib.prototype.gottop = function() {
 //    return $.getJSON("https://api.twitch.tv/kraken/games/top")
 //  };
+//  TODO - extract to json file...so you can write to that file later?
+//  TODO - save via local storage !!
+  Codelib.prototype.default_channels = function(){
 
-   Codelib.prototype.channels = function(){
-    var streamers = [
-
-      'habathcx', //yes
+    var channels = [
+      'habathcx',
       'terakilobyte',
-      'freecodecamp', //yes
-      'medrybw', //yes
+      'freecodecamp',
+      'medrybw',
       'thomasballinger',
-      'noobs2ninjas', //yes
+      'noobs2ninjas',
       'RobotCaleb',
-      'beohoff', //yes
-      'GeoffStorbeck', //yes
+      'beohoff',
+      'GeoffStorbeck',
       'leagueoflegends',
-      'ThunderCast'
+      'ThunderCast',
+      'esl_csgo',
+      'summit1g',
+      'izakooo',
+      'comster404',
+      'sodapoppin',
+      'stormstudio_csgo_ru',
+      'imaqtpie'
       //'comster404',
       //'brunofin'
     ];
 
-    //show all
-    //show online - and - what is streaming
+     return channels;
+  };
 
-    //show offline
-    Codelib.prototype.offline = function(channel){
 
-    };
+  Codelib.prototype.setChannels = function(array){
+    array.forEach(function(element,index){
+      localStorage.setItem(index, element);
+    });
+  };
 
-    return streamers;
+  Codelib.prototype.getChannels = function(){
+    //window.localStorage
+    //localStorage.getItem(index);
+    var newChannels = [];
+    for(var item in window.localStorage){
+      newChannels.push(window.localStorage[item])
+    }
+    //console.log(newChannels);
+    return newChannels;
   };
 
   return Codelib;

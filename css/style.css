@@ -79,3 +79,11 @@ body{
   /*font-weight: 100;*/
   font-family: 'Lato', sans-serif;
 }
+.pure-drawer ul > li{
+  text-transform: uppercase;
+}
+
+a:focus, a:hover {
+  color: #C9C9C9;
+  text-decoration: underline;
+}

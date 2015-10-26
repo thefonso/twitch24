@@ -306,11 +306,29 @@ define(['Codelib','jquery'],function(Codelib,$){
   $(document).ready(function(){
     var client_id = '?client_id=l91ohh8zyji3s3xztrc3w5j8r21wuak&callback=?';
 
+  //TODO read default channels into localStorage on first load
+    if (window.localStorage.length == 0){
+      var array_of_channels = [];
+      codeLib.default_channels().forEach(function(item){
+        array_of_channels.push(item);
+      });
+      codeLib.setChannels(array_of_channels);
+      codeLib.getChannels().forEach(function(item){
+        showAll(item,client_id);
+      });
+    }else{
+      codeLib.getChannels().forEach(function(item){
+        showAll(item,client_id);
+      });
+    }
+
+
+
     document.getElementById("getOnline").addEventListener("click", function(){
       document.getElementById("onlinechannels").innerHTML = '';
       document.getElementById("offchannels").innerHTML = '';
       document.getElementById("allchannels").innerHTML = '';
-      codeLib.channels().forEach(function(item){
+      codeLib.getChannels().forEach(function(item){
         online(item,client_id);
       });
     });
@@ -319,7 +337,7 @@ define(['Codelib','jquery'],function(Codelib,$){
       document.getElementById("onlinechannels").innerHTML = '';
       document.getElementById("offchannels").innerHTML = '';
       document.getElementById("allchannels").innerHTML = '';
-      codeLib.channels().forEach(function(item){
+      codeLib.getChannels().forEach(function(item){
         offline(item,client_id);
       });
     });
@@ -328,7 +346,7 @@ define(['Codelib','jquery'],function(Codelib,$){
       document.getElementById("onlinechannels").innerHTML = '';
       document.getElementById("offchannels").innerHTML = '';
       document.getElementById("allchannels").innerHTML = '';
-      codeLib.channels().forEach(function(item){
+      codeLib.getChannels().forEach(function(item){
         showAll(item,client_id);
       });
     });

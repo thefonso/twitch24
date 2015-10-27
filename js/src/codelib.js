@@ -22,7 +22,7 @@ define(function() {
 //  Codelib.prototype.gottop = function() {
 //    return $.getJSON("https://api.twitch.tv/kraken/games/top")
 //  };
-//  TODO - extract to json file...so you can write to that file later?
+
 //  TODO - save via local storage !!
   Codelib.prototype.default_channels = function(){
 
@@ -52,12 +52,15 @@ define(function() {
      return channels;
   };
 
+//TODO - display 24 channels via localStorage.getItem
+//TODO - set onclick for "update"
 
   Codelib.prototype.setChannels = function(array){
     array.forEach(function(element,index){
       localStorage.setItem(index, element);
     });
   };
+
 
   Codelib.prototype.getChannels = function(){
     //window.localStorage
@@ -69,6 +72,40 @@ define(function() {
     //console.log(newChannels);
     return newChannels;
   };
+
+
+  Codelib.prototype.channelForm = function(){
+
+    for (var i = 0; i < localStorage.length; i++){
+      var key = localStorage.key(i);
+      var value = localStorage[key];
+
+      var channel = document.createElement('div');
+      channel.setAttribute('class','channel col-md-2');
+
+      var inputElementOne = document.createElement('input');
+      inputElementOne.type = "text";
+      inputElementOne.id = key;
+      inputElementOne.value = value;
+
+      var inputElementTwo = document.createElement('input');
+      inputElementTwo.type = "button";
+      inputElementTwo.value = "update";
+      (function (i){
+        inputElementTwo.addEventListener('click', function(){
+          var newValue = document.getElementById(i).value;
+          localStorage.setItem(i,newValue);
+          alert("updated: "+newValue);
+        });
+      })(i);
+
+      document.getElementById("onlinechannels").appendChild(channel).appendChild(inputElementOne);
+      document.getElementById("onlinechannels").appendChild(channel).appendChild(inputElementTwo);
+    }
+
+
+  };
+
 
   return Codelib;
 });

@@ -355,9 +355,14 @@ define(['Codelib','jquery'],function(Codelib,$){
       document.getElementById("onlinechannels").innerHTML = '';
       document.getElementById("offchannels").innerHTML = '';
       document.getElementById("allchannels").innerHTML = '';
+      codeLib.channelForm();
+    });
 
-        codeLib.channelForm();
-
+    document.getElementById("search").addEventListener("click", function(){
+      document.getElementById("onlinechannels").innerHTML = '';
+      document.getElementById("offchannels").innerHTML = '';
+      document.getElementById("allchannels").innerHTML = '';
+      codeLib.search4more(client_id);
     });
 
   });

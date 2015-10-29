@@ -52,6 +52,18 @@ body{
   overflow: hidden;
   position: relative;
 }
+.channel_form{
+  color: white;
+  width: 12em;
+  height: 6em;
+  padding: 0;
+  border: 0.2em solid white;
+  margin: 0.2em;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px #464646;
+  overflow: hidden;
+  position: relative;
+}
 .logo{
   float: left;
 }

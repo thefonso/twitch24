@@ -106,3 +106,7 @@ a:focus, a:hover {
 .channel > input{
   color: #0D3349;
 }
+
+#searchElement{
+  padding-left: 0;
+}

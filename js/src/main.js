@@ -311,7 +311,7 @@ define(['Codelib','jquery'],function(Codelib,$){
     }
 
 
-
+// TODO refactor using jquery. remove repetition.
     document.getElementById("getOnline").addEventListener("click", function(){
       document.getElementById("onlinechannels").innerHTML = '';
       document.getElementById("offchannels").innerHTML = '';

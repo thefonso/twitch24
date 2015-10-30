@@ -155,6 +155,7 @@ define(function() {
     document.getElementById("onlinechannels").appendChild(oneColumn).appendChild(topDiv).appendChild(uList).appendChild(listItem).appendChild(inputElementTwo);
 
     $('#topDiv').after('<div id="bottomDiv" class="col-md-12"><ul><li id="results">results:-----</li></ul></div>');
+    $('#bottomDiv').after('<div id="instructionDiv" class="col-md-12"><h1>Instructions:</h1><p>Enter and search for the name of a game you want to track. Channels related to that game will be displayed after a few seconds. Copy the name of a channel into one of the fields on the left, press "update" to save that channel. Then simply go to the allchannels page and start tracking. </p></div>');
     $('#bottomDiv').hide();
 
       (function () {
@@ -171,10 +172,14 @@ define(function() {
 
     //TODO col2 see all current channel names
     var twoColumn = document.createElement('div');
-    twoColumn.setAttribute('class','channels col-md-6');
-    twoColumn.setAttribute('id','channels');
+    twoColumn.setAttribute('class','channels col-md-3');
+    twoColumn.setAttribute('id','channels1');
 
-    for (var i = 0; i < localStorage.length; i++){
+    var threeColumn = document.createElement('div');
+    threeColumn.setAttribute('class','channels col-md-3');
+    threeColumn.setAttribute('id','channels2');
+
+    for (var i = 0; i <= 12; i++){
       var key = localStorage.key(i);
       var value = localStorage[key];
       var uList     = document.createElement('ul');
@@ -192,12 +197,38 @@ define(function() {
         inputElementTwo.addEventListener('click', function () {
           var newValue = document.getElementById(i).value;
           localStorage.setItem(i, newValue);
-          alert("updated: " + newValue);
+          alert("updated: go to front page to see changes" + newValue);
         });
       })(i);
 
       document.getElementById("onlinechannels").appendChild(twoColumn).appendChild(uList).appendChild(listItem).appendChild(inputElementOne);
       document.getElementById("onlinechannels").appendChild(twoColumn).appendChild(uList).appendChild(listItem).appendChild(inputElementTwo);
+    }
+
+    for (var i = 13; i <= 24; i++){
+      var key = localStorage.key(i);
+      var value = localStorage[key];
+      var uList     = document.createElement('ul');
+      var listItem  = document.createElement('li');
+
+      var inputElementOne = document.createElement('input');
+      inputElementOne.type = "text";
+      inputElementOne.id = key;
+      inputElementOne.value = value;
+
+      var inputElementTwo = document.createElement('input');
+      inputElementTwo.type = "button";
+      inputElementTwo.value = "update";
+      (function (i) {
+        inputElementTwo.addEventListener('click', function () {
+          var newValue = document.getElementById(i).value;
+          localStorage.setItem(i, newValue);
+          alert("updated: go to front page to see changes" + newValue);
+        });
+      })(i);
+
+      document.getElementById("onlinechannels").appendChild(threeColumn).appendChild(uList).appendChild(listItem).appendChild(inputElementOne);
+      document.getElementById("onlinechannels").appendChild(threeColumn).appendChild(uList).appendChild(listItem).appendChild(inputElementTwo);
     }
 
   };

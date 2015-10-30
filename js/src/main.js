@@ -21,6 +21,7 @@ define(['Codelib','jquery'],function(Codelib,$){
           var txtstatus = 'on';
           var preview;
 
+
           if(result.stream.preview.medium != null){
             preview = result.stream.preview.medium;
             console.log(preview);
@@ -41,7 +42,7 @@ define(['Codelib','jquery'],function(Codelib,$){
           }
 
           if(result.stream.channel.status != null){
-            channel_status = result.stream.channel.status
+            channel_status = result.stream.game
           }else{
             channel_status = 'empty';
           }
@@ -52,6 +53,7 @@ console.log(item);
               '<div class="logo col-md-3"><img src='+channel_logo+' alt=""/></div>' +
               '<div class="name col-md-7">'+display_name+'</div>' +
               '<div class="status_online green col-md-2">'+txtstatus+'</div>' +
+              '<div class="channel_status col-md-12">'+channel_status+'</div>' +
               '</div></a>');
 
         }else{

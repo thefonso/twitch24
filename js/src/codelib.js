@@ -159,7 +159,8 @@ define(function() {
 
       (function () {
         inputElementTwo.addEventListener('click', function () {
-
+          //remove li after first one with id 'results'...
+          $('#results').nextAll().remove();
           // TODO: game_name, channel, followers
           var ask = document.getElementById('searchBox').value;
           $('#bottomDiv').fadeIn(1000,function(){

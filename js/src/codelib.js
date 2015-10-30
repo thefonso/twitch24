@@ -108,23 +108,17 @@ define(function() {
   Codelib.prototype.searchgames = function(ask){
     return $.getJSON("https://api.twitch.tv/kraken/search/streams?limit=10&offset=10&query="+ask)
         .done(function(result){
-          //alert(result);
-          console.dir(result.streams);
+          console.dir(result);
           result.streams.forEach(function(node){
             console.dir(node.channel.display_name);
             var channel_name  = node.channel.display_name;
             var game_name     = node.game;
             var followers     = node.channel.followers;
 
-            var div           = document.createElement('div');
-            var uList         = document.createElement('ul');
-            var listItem      = document.createElement('li');
-            var channel = document.createTextNode(channel_name);
-
-            document.getElementById("searchDiv").appendChild(uList).appendChild(listItem).appendChild(channel);
+            //$('#bottomDiv').fadeIn(5000,function(){
+              $('#results').after('<li>'+channel_name+'</li>').fadeIn(5000);
+            //});
           });
-
-
         })
         .fail(function (result) {
           // Tell user of error
@@ -132,36 +126,45 @@ define(function() {
         })
   };
 
-  Codelib.prototype.search4more = function(client_id){
+  Codelib.prototype.search4more = function(){
     var oneColumn = document.createElement('div');
     oneColumn.setAttribute('class','search col-md-6');
     oneColumn.setAttribute('id','searchDiv');
-// TODO: type game in search field,
+    // TODO: type game in search field,
 
-// TODO: add a channel to current list
+    // TODO: add a channel to current list
 
-      var uList     = document.createElement('ul');
-      var listItem  = document.createElement('li');
+    var topDiv = document.createElement('div');
+    topDiv.setAttribute('id','topDiv');
+    topDiv.setAttribute('class','col-md-12');
 
-      var inputElementOne = document.createElement('input');
-      inputElementOne.type = "text";
-      inputElementOne.id = 'searchBox';
-      inputElementOne.value = 'starcraft';
+    var uList     = document.createElement('ul');
+    uList.setAttribute('id','searchElement');
+    var listItem  = document.createElement('li');
 
-      var inputElementTwo = document.createElement('input');
-      inputElementTwo.type = "button";
-      inputElementTwo.value = "go";
+    var inputElementOne = document.createElement('input');
+    inputElementOne.type = "text";
+    inputElementOne.id = 'searchBox';
+    inputElementOne.value = 'starcraft';
 
-    document.getElementById("onlinechannels").appendChild(oneColumn).appendChild(uList).appendChild(listItem).appendChild(inputElementOne);
-    document.getElementById("onlinechannels").appendChild(oneColumn).appendChild(uList).appendChild(listItem).appendChild(inputElementTwo);
+    var inputElementTwo = document.createElement('input');
+    inputElementTwo.type = "button";
+    inputElementTwo.value = "go";
+
+    document.getElementById("onlinechannels").appendChild(oneColumn).appendChild(topDiv).appendChild(uList).appendChild(listItem).appendChild(inputElementOne);
+    document.getElementById("onlinechannels").appendChild(oneColumn).appendChild(topDiv).appendChild(uList).appendChild(listItem).appendChild(inputElementTwo);
+
+    $('#topDiv').after('<div id="bottomDiv" class="col-md-12"><ul><li id="results">results:-----</li></ul></div>');
+    $('#bottomDiv').hide();
 
       (function () {
         inputElementTwo.addEventListener('click', function () {
-          // TODO: see result channels for that game under search field
+
           // TODO: game_name, channel, followers
           var ask = document.getElementById('searchBox').value;
-          Codelib.prototype.searchgames(ask);
-
+          $('#bottomDiv').fadeIn(1000,function(){
+            Codelib.prototype.searchgames(ask);
+          });
         });
       })();
 

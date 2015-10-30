@@ -7,21 +7,9 @@ define(['Codelib','jquery'],function(Codelib,$){
   //show online - and - what is streaming
   //show offline
 
-  //TODO split into online and offline methods, return local array for each
+  //TODO combine online and offline into one array 4 display
 
-  //NOTE: this is what the JS code builds
-  //<div class="container center no-gutter">
-  //    <div id="testchannels" class="no-gutter col-md-12">
-  //    <a href="test url">
-  //    <div class="channel no-gutter col-md-2">
-  //    <div class="logo col-md-3"><img src="holder.js/32x32" alt=""/></div>
-  //    <div class="name col-md-9">test name</div>
-  //<div class='bio col-md-12'>test bio</div>
-  //<div class="status col-md-12">test status</div>
-  //</div>
-  //</a>
-  //</div>
-  //</div>
+
 
   function showAll(item,client_id){
 
@@ -362,7 +350,7 @@ define(['Codelib','jquery'],function(Codelib,$){
       document.getElementById("onlinechannels").innerHTML = '';
       document.getElementById("offchannels").innerHTML = '';
       document.getElementById("allchannels").innerHTML = '';
-      codeLib.search4more(client_id);
+      codeLib.search4more();
     });
 
   });

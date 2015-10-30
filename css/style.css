@@ -40,6 +40,9 @@ body{
 .testchannels{
   padding: 0;
 }
+#onlinechannels ul{
+  list-style: none;
+}
 .channel{
   color: white;
   width: 12em;

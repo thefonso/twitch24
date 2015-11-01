@@ -21,10 +21,8 @@ define(['Codelib','jquery'],function(Codelib,$){
           var txtstatus = 'on';
           var preview;
 
-
           if(result.stream.preview.medium != null){
             preview = result.stream.preview.medium;
-            console.log(preview);
           }else{
             preview = '';
           }
@@ -47,8 +45,7 @@ define(['Codelib','jquery'],function(Codelib,$){
             channel_status = 'empty';
           }
 
-console.log(item);
-          $('#onlinechannels').after('<a target="_blank" href="http://www.twitch.tv/'+item+'">' +
+          $('#onlinechannels').append('<a target="_blank" href="http://www.twitch.tv/'+item+'">' +
               '<div class="channel online no-gutter col-md-2" style="background-image: url('+preview+')">' +
               '<div class="logo col-md-3"><img src='+channel_logo+' alt=""/></div>' +
               '<div class="name col-md-7">'+display_name+'</div>' +
@@ -84,40 +81,15 @@ console.log(item);
                   bio_result = 'empty';
                 }
 
-                var url = document.createElement('a');
-                url.setAttribute('href','http://www.twitch.tv/'+item);
-                url.setAttribute('target','_blank');
-
-                var channel = document.createElement('div');
-                channel.setAttribute('class','channel no-gutter col-md-2');
-
-                var name = document.createElement('div');
-                name.setAttribute('class','name col-md-9');
-                var textname = document.createTextNode(display_name);
-                name.appendChild(textname);
-
-                var logo = document.createElement('div');
-                logo.setAttribute('class','logo col-md-3');
-                var img = document.createElement('img');
-                img.setAttribute('src',channel_logo);
-                logo.appendChild(img);
-
-                var bio = document.createElement('div');
-                bio.setAttribute('class','bio col-md-12');
-                var textbio = document.createTextNode(bio_result.substring(0, 100));
-                bio.appendChild(textbio);
-
-                var status = document.createElement('div');
-                status.setAttribute('class','status red col-md-12');
-                var textstatus = document.createTextNode(txtstatus);
-                status.appendChild(textstatus);
-
                 //TODO place holder thumbnails for null results
 
-                document.getElementById("offchannels").appendChild(url).appendChild(channel).appendChild(logo);
-                document.getElementById("offchannels").appendChild(url).appendChild(channel).appendChild(name);
-                document.getElementById("offchannels").appendChild(url).appendChild(channel).appendChild(bio);
-                document.getElementById("offchannels").appendChild(url).appendChild(channel).appendChild(status);
+              $('#offchannels').append('<a target="_blank" href="http://www.twitch.tv/'+item+'">'+
+                  '<div class="channel no-gutter col-md-2">' +
+                  '<div class="logo col-md-3"><img src='+channel_logo+' alt=""/></div>'+
+                  '<div class="name col-md-9">'+display_name+'</div>' +
+                  '<div class="bio col-md-12">'+bio_result.substring(0,100)+'</div>' +
+                  '<div class="status red col-md-12">'+txtstatus+'</div>' +
+                  '</div></a>');
               });
         }
       })
@@ -275,6 +247,7 @@ console.log(item);
   }
 
   $(document).ready(function(){
+    //TODO rebuild as fullstack MEAN app so env var can be set and OAuth can be used...since the next line is evil.
     var client_id = '?client_id=l91ohh8zyji3s3xztrc3w5j8r21wuak&callback=?';
 
   //TODO read default channels into localStorage on first load

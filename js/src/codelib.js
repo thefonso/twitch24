@@ -70,9 +70,11 @@ define(function() {
 
           $('#onlinechannels').append('<a target="_blank" href="http://www.twitch.tv/'+item+'">' +
               '<div class="channel online no-gutter col-md-2" style="background-image: url('+preview+')">' +
-              '<div class="logo col-md-3"><img src='+channel_logo+' alt=""/></div>' +
-              '<div class="name col-md-7">'+display_name+'</div>' +
+              '<div class="row">' +
+              '<div class="logo col-md-2"><img src='+channel_logo+' alt=""/></div>' +
+              '<div class="name col-md-8">'+display_name+'</div>' +
               '<div class="status_online green col-md-2">'+text_status+'</div>' +
+              '</div>'+
               '<div class="channel_status col-md-12">'+channel_status+'</div>' +
               '</div></a>'
           );
@@ -116,9 +118,11 @@ define(function() {
 
           $('#onlinechannels').append('<a target="_blank" href="http://www.twitch.tv/'+item+'">'+
               '<div class="channel no-gutter col-md-2">' +
-              '<div class="logo col-md-3"><img src='+channel_logo+' alt=""/></div>'+
-              '<div class="name col-md-9">'+display_name+'</div>' +
-              '<div class="bio col-md-12">'+bio_result.substring(0,100)+'</div>' +
+              '<div class="row">' +
+              '<div class="logo col-md-2"><img src='+channel_logo+' alt=""/></div>'+
+              '<div class="name col-md-10">'+display_name+'</div>' +
+              '</div>'+
+              '<div class="bio col-md-12">'+bio_result.substring(0,95)+"..."+'</div>' +
               '<div class="status red col-md-12">'+txtstatus+'</div>' +
               '</div></a>');
 

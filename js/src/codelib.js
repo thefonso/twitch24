@@ -217,6 +217,13 @@ define(function() {
 
   };
 
+  Codelib.prototype.aboutPage = function(){
+      $('#onlinechannels').append('<div id="about"><h1>About this app: Twitch24 v0.1.0 </h1>' +
+          '<p>Proof of concept: to experiment with qunit, pure javascript, AMD module design, requireJS, with a touch of jquery and Bootstrap.</p>' +
+          '<p>This is alpha software. A non-angular, single page app that pulls data from the Twitch api and allows the user to track the online/offline status of 24 user chosen channels which are stored via localStorage</p>' +
+          '</div>');
+  };
+
   Codelib.prototype.searchgames = function(ask){
     return $.getJSON("https://api.twitch.tv/kraken/search/streams?limit=10&offset=10&query="+ask)
         .done(function(result){

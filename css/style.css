@@ -149,3 +149,6 @@ a:focus, a:hover {
 #searchElement{
   padding-left: 0;
 }
+#about{
+  font-size: 2em;
+}

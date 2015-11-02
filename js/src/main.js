@@ -57,8 +57,8 @@ define(['Codelib','jquery'],function(Codelib,$){
       });
     });
 
-    addClickHandler("updateList", function(){
-        codeLib.channelForm();
+    addClickHandler("aboutPage", function(){
+        codeLib.aboutPage();
     });
 
     addClickHandler("search", function(){

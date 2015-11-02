@@ -18,8 +18,7 @@ define(function() {
     return $.getJSON("https://api.twitch.tv/kraken/"+apiurl+"/"+channel+client_id)
   };
 
-
-
+  //Codelib.prototype.offline =
 //  TODO - use this to grab the top games
 //  Codelib.prototype.gottop = function() {
 //    return $.getJSON("https://api.twitch.tv/kraken/games/top")

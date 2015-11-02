@@ -10,12 +10,23 @@ define(['Codelib','jquery'],function(Codelib,$){
   //TODO combine online and offline into one array 4 display
 
   function showAll(item,client_id){
-
     var apiurl = "streams";
+    codeLib.gotjson(apiurl,item,client_id)
+    .done(function(result) {
+      if (result.stream != null) {
+        online(item, client_id);
+      }else{
+        offline(item, client_id);
+      }
+    });
+  }
+
+  function online(item,client_id){
+
+      var apiurl = "streams";
       codeLib.gotjson(apiurl,item,client_id)
       .done(function(result) {
 
-        if(result.stream != null) {
           var display_name;
           var channel_logo;
           var channel_status;
@@ -52,199 +63,58 @@ define(['Codelib','jquery'],function(Codelib,$){
               '<div class="name col-md-7">'+display_name+'</div>' +
               '<div class="status_online green col-md-2">'+txtstatus+'</div>' +
               '<div class="channel_status col-md-12">'+channel_status+'</div>' +
-              '</div></a>');
-
-        }else{
-          var apiurl = "users";
-          codeLib.gotjson(apiurl,item,client_id)
-              .done(function(result) {
-                var display_name;
-                var channel_logo;
-                var bio_result;
-                var txtstatus = 'offline';
-                var item = item+'/profile';
-
-                if(result.display_name != null){
-                  display_name = result.display_name;
-                }else{
-                  display_name = 'empty';
-                }
-
-                if(result.logo != null){
-                  channel_logo = result.logo;
-                }else{
-                  channel_logo = 'images/twitch.png';
-                }
-
-                if(result.bio != null){
-                  bio_result = result.bio;
-                }else{
-                  bio_result = 'empty';
-                }
-
-                //TODO place holder thumbnails for null results
-
-              $('#onlinechannels').append('<a target="_blank" href="http://www.twitch.tv/'+item+'">'+
-                  '<div class="channel no-gutter col-md-2">' +
-                  '<div class="logo col-md-3"><img src='+channel_logo+' alt=""/></div>'+
-                  '<div class="name col-md-9">'+display_name+'</div>' +
-                  '<div class="bio col-md-12">'+bio_result.substring(0,100)+'</div>' +
-                  '<div class="status red col-md-12">'+txtstatus+'</div>' +
-                  '</div></a>');
-              });
+              '</div></a>'
+          );
         }
-      })
+      )
       .fail(function(x) {
             // Tell the user something bad happened
       });
   }
 
-  function online(item,client_id){
-
-    var apiurl = "streams";
-    codeLib.gotjson(apiurl,item,client_id)
-        .done(function(result) {
-          if(result.stream != null) {
-            var display_name;
-            var channel_logo;
-            var channel_status;
-            var txtstatus = 'online';
-
-            if(result.stream.channel.display_name != null){
-              display_name = result.stream.channel.display_name;
-            }else{
-              display_name = 'empty';
-            }
-
-            if(result.stream.channel.logo != null){
-              channel_logo = result.stream.channel.logo;
-            }else{
-              channel_logo = 'images/twitch.png';
-            }
-
-            if(result.stream.channel.status != null){
-              channel_status = result.stream.channel.status
-            }else{
-              channel_status = 'empty';
-            }
-
-            var url = document.createElement('a');
-            url.setAttribute('href','http://www.twitch.tv/'+item);
-            url.setAttribute('target','_blank');
-
-            var channel = document.createElement('div');
-            channel.setAttribute('class','channel no-gutter col-md-2');
-
-            var name = document.createElement('div');
-            name.setAttribute('class','name col-md-9');
-            var textname = document.createTextNode(display_name);
-            name.appendChild(textname);
-
-            var logo = document.createElement('div');
-            logo.setAttribute('class','logo col-md-3');
-            var img = document.createElement('img');
-            img.setAttribute('src',channel_logo);
-            logo.appendChild(img);
-
-            var bio = document.createElement('div');
-            bio.setAttribute('class','bio col-md-12');
-            var textbio = document.createTextNode(channel_status.substring(0, 100));
-            bio.appendChild(textbio);
-
-            var status = document.createElement('div');
-            status.setAttribute('class','status green col-md-12');
-            var textstatus = document.createTextNode(txtstatus);
-            status.appendChild(textstatus);
-
-            document.getElementById("onlinechannels").appendChild(url).appendChild(channel).appendChild(logo);
-            document.getElementById("onlinechannels").appendChild(url).appendChild(channel).appendChild(name);
-            document.getElementById("onlinechannels").appendChild(url).appendChild(channel).appendChild(bio);
-            document.getElementById("onlinechannels").appendChild(url).appendChild(channel).appendChild(status);
-
-          }else{
-          //...nothing
-          }
-        })
-        .fail(function(x) {
-          // Tell the user something bad happened
-        });
-  }
-
   function offline(item,client_id){
 
-    var apiurl = "streams";
-    codeLib.gotjson(apiurl,item,client_id)
-        .done(function(result) {
-          if(result.stream != null) {
-            //...nothing
-          }else{
-            var apiurl = "users";
-            codeLib.gotjson(apiurl,item,client_id)
-                .done(function(result) {
-                  var display_name;
-                  var channel_logo;
-                  var bio_result;
-                  var txtstatus = 'offline';
-                  var item = item+'/profile';
+      var apiurl = "users";
+      codeLib.gotjson(apiurl,item,client_id)
+      .done(function(result) {
+        var display_name;
+        var channel_logo;
+        var bio_result;
+        var txtstatus = 'offline';
+        var item = item+'/profile';
 
-                  if(result.display_name != null){
-                    display_name = result.display_name;
-                  }else{
-                    display_name = 'empty';
-                  }
+        if(result.display_name != null){
+          display_name = result.display_name;
+        }else{
+          display_name = 'empty';
+        }
 
-                  if(result.logo != null){
-                    channel_logo = result.logo;
-                  }else{
-                    channel_logo = 'images/twitch.png';
-                  }
+        if(result.logo != null){
+          channel_logo = result.logo;
+        }else{
+          channel_logo = 'images/twitch.png';
+        }
 
-                  if(result.bio != null){
-                    bio_result = result.bio;
-                  }else{
-                    bio_result = 'empty';
-                  }
+        if(result.bio != null){
+          bio_result = result.bio;
+        }else{
+          bio_result = 'empty';
+        }
 
-                  var url = document.createElement('a');
-                  url.setAttribute('href','http://www.twitch.tv/'+item);
-                  url.setAttribute('target','_blank');
+        //TODO place holder thumbnails for null results
 
-                  var channel = document.createElement('div');
-                  channel.setAttribute('class','channel no-gutter col-md-2');
+        $('#onlinechannels').append('<a target="_blank" href="http://www.twitch.tv/'+item+'">'+
+            '<div class="channel no-gutter col-md-2">' +
+            '<div class="logo col-md-3"><img src='+channel_logo+' alt=""/></div>'+
+            '<div class="name col-md-9">'+display_name+'</div>' +
+            '<div class="bio col-md-12">'+bio_result.substring(0,100)+'</div>' +
+            '<div class="status red col-md-12">'+txtstatus+'</div>' +
+            '</div></a>');
 
-                  var name = document.createElement('div');
-                  name.setAttribute('class','name col-md-9');
-                  var textname = document.createTextNode(display_name);
-                  name.appendChild(textname);
-
-                  var logo = document.createElement('div');
-                  logo.setAttribute('class','logo col-md-3');
-                  var img = document.createElement('img');
-                  img.setAttribute('src',channel_logo);
-                  logo.appendChild(img);
-
-                  var bio = document.createElement('div');
-                  bio.setAttribute('class','bio col-md-12');
-                  var textbio = document.createTextNode(bio_result.substring(0, 100));
-                  bio.appendChild(textbio);
-
-                  var status = document.createElement('div');
-                  status.setAttribute('class','status red col-md-12');
-                  var textstatus = document.createTextNode(txtstatus);
-                  status.appendChild(textstatus);
-
-                  //TODO place holder thumbnails for null results
-
-                  document.getElementById("offchannels").appendChild(url).appendChild(channel).appendChild(logo);
-                  document.getElementById("offchannels").appendChild(url).appendChild(channel).appendChild(name);
-                  document.getElementById("offchannels").appendChild(url).appendChild(channel).appendChild(bio);
-                  document.getElementById("offchannels").appendChild(url).appendChild(channel).appendChild(status);
-                });
-          }
-        })
-        .fail(function(x) {
-          // Tell the user something bad happened
-        });
+      })
+      .fail(function(x) {
+        // Tell the user something bad happened
+      });
   }
 
   $(document).ready(function(){
@@ -271,8 +141,6 @@ define(['Codelib','jquery'],function(Codelib,$){
 // TODO refactor using jquery. remove repetition.
     document.getElementById("getOnline").addEventListener("click", function(){
       document.getElementById("onlinechannels").innerHTML = '';
-      document.getElementById("offchannels").innerHTML = '';
-      document.getElementById("allchannels").innerHTML = '';
       codeLib.getChannels().forEach(function(item){
         online(item,client_id);
       });
@@ -280,8 +148,6 @@ define(['Codelib','jquery'],function(Codelib,$){
 
     document.getElementById("getOffline").addEventListener("click", function(){
       document.getElementById("onlinechannels").innerHTML = '';
-      document.getElementById("offchannels").innerHTML = '';
-      document.getElementById("allchannels").innerHTML = '';
       codeLib.getChannels().forEach(function(item){
         offline(item,client_id);
       });
@@ -289,8 +155,6 @@ define(['Codelib','jquery'],function(Codelib,$){
 
     document.getElementById("getAll").addEventListener("click", function(){
       document.getElementById("onlinechannels").innerHTML = '';
-      document.getElementById("offchannels").innerHTML = '';
-      document.getElementById("allchannels").innerHTML = '';
       codeLib.getChannels().forEach(function(item){
         showAll(item,client_id);
       });
@@ -298,15 +162,11 @@ define(['Codelib','jquery'],function(Codelib,$){
 
     document.getElementById("updateList").addEventListener("click", function(){
       document.getElementById("onlinechannels").innerHTML = '';
-      document.getElementById("offchannels").innerHTML = '';
-      document.getElementById("allchannels").innerHTML = '';
       codeLib.channelForm();
     });
 
     document.getElementById("search").addEventListener("click", function(){
       document.getElementById("onlinechannels").innerHTML = '';
-      document.getElementById("offchannels").innerHTML = '';
-      document.getElementById("allchannels").innerHTML = '';
       codeLib.search4more();
     });
 

@@ -149,11 +149,16 @@ define(function() {
       'esl_csgo',
       'summit1g',
       'izakooo',
-      'comster404',
       'sodapoppin',
       'stormstudio_csgo_ru',
-      'imaqtpie'
-      //'comster404',
+      'imaqtpie',
+      'dfunker0',
+      'LeagueOfMichael',
+      'Quinnell',
+      'Gaungade',
+      'cokeduppatty',
+      'snipealot2',
+      'comster404'
       //'brunofin'
     ];
 
@@ -282,7 +287,7 @@ define(function() {
     threeColumn.setAttribute('class','channels col-md-3');
     threeColumn.setAttribute('id','channels2');
 
-    for (var i = 0; i <= 12; i++){
+    for (var i = 0; i <= 11; i++){
       var key = localStorage.key(i);
       var value = localStorage[key];
       var uList     = document.createElement('ul');
@@ -308,7 +313,7 @@ define(function() {
       document.getElementById("onlinechannels").appendChild(twoColumn).appendChild(uList).appendChild(listItem).appendChild(inputElementTwo);
     }
 
-    for (var i = 13; i <= 24; i++){
+    for (var i = 12; i <= 23; i++){
       var key = localStorage.key(i);
       var value = localStorage[key];
       var uList     = document.createElement('ul');

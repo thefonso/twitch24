@@ -12,7 +12,7 @@ define(['Codelib','jquery'],function(Codelib,$){
     // OAuth can be used...since the next line is evil.
     var client_id = '?client_id=l91ohh8zyji3s3xztrc3w5j8r21wuak&callback=?';
 
-  //TODO read default channels into localStorage on first load
+
     if (window.localStorage.length == 0){
       var array_of_channels = [];
       codeLib.default_channels().forEach(function(item){
@@ -30,17 +30,6 @@ define(['Codelib','jquery'],function(Codelib,$){
 
 
 // TODO refactor. remove repetition. make SOLID.
-//    var menu = '{"menu":['+
-//        '{"name":"getOnline","value":"codeLib.online(item,client_id);"},'+
-//        '{"name":"getOffline","value":"codeLib.offline(item,client_id);"},'+
-//        '{"name":"getAll","value":"codeLib.showAll(item,client_id);"},'+
-//        '{"name":"updateList","value":"codeLib.channelForm();"},'+
-//        '{"name":"search","value":"codeLib.search4more();"}]}';
-//
-//    var obj = JSON.parse(menu);
-//
-//  console.log(obj.menu instanceof Array);
-//
 
 
     function addClickHandler(target,handler){
@@ -69,15 +58,11 @@ define(['Codelib','jquery'],function(Codelib,$){
     });
 
     addClickHandler("updateList", function(){
-      codeLib.getChannels().forEach(function(){
         codeLib.channelForm();
-      });
     });
 
     addClickHandler("search", function(){
-      codeLib.getChannels().forEach(function(){
         codeLib.search4more();
-      });
     });
 
   });

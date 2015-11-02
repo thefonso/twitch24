@@ -11,7 +11,7 @@ define(['Codelib','jquery'], function(Codelib,$){
       var codelib = new Codelib();
       //qunit needs this assert.async() to make asycronus test
       var done = assert.async();
-      var channel = "medrybw";
+      var channel = "freecodecamp";
       //run the .done call back here to test result
       codelib.gotjson(channel).done(function(result){
         assert.notEqual(result.stream,null, 'should not be true');

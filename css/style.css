@@ -24,11 +24,15 @@ a {
 body{
   background-color: #7E46FF;
   /*background-color: #53A7FF;*/
+  /*background-repeat: no-repeat;*/
+  /*background-attachment: fixed;*/
+  /*background-position: center center;*/
+  /*background-size: cover;*/
   /*font-size: 100%;*/
   font-family: 'Lato', sans-serif;
 }
 .special-width{
-  width:77em;
+  width:79em;
 }
 .col-centered{
   float: none;

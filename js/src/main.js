@@ -43,36 +43,41 @@ define(['Codelib','jquery'],function(Codelib,$){
 //
 
 
+    function addClickHandler(target,handler){
+      document.getElementById(target).addEventListener("click", function(){
+        document.getElementById("onlinechannels").innerHTML = '';
+        handler()
+      });
+    }
 
-    document.getElementById("getOnline").addEventListener("click", function(){
-      document.getElementById("onlinechannels").innerHTML = '';
+    addClickHandler("getOnline", function(){
       codeLib.getChannels().forEach(function(item){
         codeLib.online(item,client_id);
       });
     });
 
-    document.getElementById("getOffline").addEventListener("click", function(){
-      document.getElementById("onlinechannels").innerHTML = '';
+    addClickHandler("getOffline", function(){
       codeLib.getChannels().forEach(function(item){
         codeLib.offline(item,client_id);
       });
     });
 
-    document.getElementById("getAll").addEventListener("click", function(){
-      document.getElementById("onlinechannels").innerHTML = '';
+    addClickHandler("getAll", function(){
       codeLib.getChannels().forEach(function(item){
         codeLib.showAll(item,client_id);
       });
     });
 
-    document.getElementById("updateList").addEventListener("click", function(){
-      document.getElementById("onlinechannels").innerHTML = '';
-      codeLib.channelForm();
+    addClickHandler("updateList", function(){
+      codeLib.getChannels().forEach(function(){
+        codeLib.channelForm();
+      });
     });
 
-    document.getElementById("search").addEventListener("click", function(){
-      document.getElementById("onlinechannels").innerHTML = '';
-      codeLib.search4more();
+    addClickHandler("search", function(){
+      codeLib.getChannels().forEach(function(){
+        codeLib.search4more();
+      });
     });
 
   });

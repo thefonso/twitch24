@@ -1,5 +1,7 @@
 "use strict";
 
+//TODO BIG - refactor this file...violating SOLID via method calls inside of methods
+
 define(function() {
   //constructor
   function Codelib(a,b){
@@ -18,13 +20,118 @@ define(function() {
     return $.getJSON("https://api.twitch.tv/kraken/"+apiurl+"/"+channel+client_id)
   };
 
-  //Codelib.prototype.offline =
+  Codelib.prototype.showAll = function showAll(item,client_id){
+    var apiurl = "streams";
+    Codelib.prototype.gotjson(apiurl,item,client_id)
+        .done(function(result) {
+          if (result.stream != null) {
+            Codelib.prototype.online(item, client_id);
+          }else{
+            Codelib.prototype.offline(item, client_id);
+          }
+        });
+  };
+
+  Codelib.prototype.online = function online(item,client_id){
+
+    var apiurl = "streams";
+    Codelib.prototype.gotjson(apiurl,item,client_id)
+        .done(function(result) {
+
+          var display_name;
+          var channel_logo;
+          var channel_status;
+          var text_status = 'on';
+          var preview;
+
+          if(result.stream.preview.medium != null){
+            preview = result.stream.preview.medium;
+          }else{
+            preview = '';
+          }
+
+          if(result.stream.channel.display_name != null){
+            display_name = result.stream.channel.display_name;
+          }else{
+            display_name = 'empty';
+          }
+
+          if(result.stream.channel.logo != null){
+            channel_logo = result.stream.channel.logo;
+          }else{
+            channel_logo = 'images/twitch.png';
+          }
+
+          if(result.stream.channel.status != null){
+            channel_status = result.stream.game
+          }else{
+            channel_status = 'empty';
+          }
+
+          $('#onlinechannels').append('<a target="_blank" href="http://www.twitch.tv/'+item+'">' +
+              '<div class="channel online no-gutter col-md-2" style="background-image: url('+preview+')">' +
+              '<div class="logo col-md-3"><img src='+channel_logo+' alt=""/></div>' +
+              '<div class="name col-md-7">'+display_name+'</div>' +
+              '<div class="status_online green col-md-2">'+text_status+'</div>' +
+              '<div class="channel_status col-md-12">'+channel_status+'</div>' +
+              '</div></a>'
+          );
+        }
+    )
+        .fail(function(x) {
+          // Tell the user something bad happened
+        });
+  };
+
+  Codelib.prototype.offline = function offline(item,client_id){
+
+    var apiurl = "users";
+    Codelib.prototype.gotjson(apiurl,item,client_id)
+        .done(function(result) {
+          var display_name;
+          var channel_logo;
+          var bio_result;
+          var txtstatus = 'offline';
+          var item = item+'/profile';
+
+          if(result.display_name != null){
+            display_name = result.display_name;
+          }else{
+            display_name = 'empty';
+          }
+
+          if(result.logo != null){
+            channel_logo = result.logo;
+          }else{
+            channel_logo = 'images/twitch.png';
+          }
+
+          if(result.bio != null){
+            bio_result = result.bio;
+          }else{
+            bio_result = 'empty';
+          }
+
+          //TODO place holder thumbnails for null results
+
+          $('#onlinechannels').append('<a target="_blank" href="http://www.twitch.tv/'+item+'">'+
+              '<div class="channel no-gutter col-md-2">' +
+              '<div class="logo col-md-3"><img src='+channel_logo+' alt=""/></div>'+
+              '<div class="name col-md-9">'+display_name+'</div>' +
+              '<div class="bio col-md-12">'+bio_result.substring(0,100)+'</div>' +
+              '<div class="status red col-md-12">'+txtstatus+'</div>' +
+              '</div></a>');
+
+        })
+        .fail(function(x) {
+          // Tell the user something bad happened
+        });
+  };
 //  TODO - use this to grab the top games
 //  Codelib.prototype.gottop = function() {
 //    return $.getJSON("https://api.twitch.tv/kraken/games/top")
 //  };
-
-//  TODO - save via local storage !!
+  
   Codelib.prototype.default_channels = function(){
 
     var channels = [
@@ -52,9 +159,6 @@ define(function() {
 
      return channels;
   };
-
-//TODO - display 24 channels via localStorage.getItem
-//TODO - set onclick for "update"
 
   Codelib.prototype.setChannels = function(array){
     array.forEach(function(element,index){

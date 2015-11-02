@@ -131,7 +131,7 @@ define(function() {
 //  Codelib.prototype.gottop = function() {
 //    return $.getJSON("https://api.twitch.tv/kraken/games/top")
 //  };
-  
+
   Codelib.prototype.default_channels = function(){
 
     var channels = [

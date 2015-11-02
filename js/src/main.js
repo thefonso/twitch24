@@ -8,7 +8,8 @@ define(['Codelib','jquery'],function(Codelib,$){
   //show offline
 
   $(document).ready(function(){
-    //TODO rebuild as fullstack MEAN app so env var can be set and OAuth can be used...since the next line is evil.
+    //TODO rebuild as fullstack MEAN app so env var can be set and
+    // OAuth can be used...since the next line is evil.
     var client_id = '?client_id=l91ohh8zyji3s3xztrc3w5j8r21wuak&callback=?';
 
   //TODO read default channels into localStorage on first load
@@ -28,7 +29,21 @@ define(['Codelib','jquery'],function(Codelib,$){
     }
 
 
-// TODO refactor using jquery. remove repetition.
+// TODO refactor. remove repetition. make SOLID.
+//    var menu = '{"menu":['+
+//        '{"name":"getOnline","value":"codeLib.online(item,client_id);"},'+
+//        '{"name":"getOffline","value":"codeLib.offline(item,client_id);"},'+
+//        '{"name":"getAll","value":"codeLib.showAll(item,client_id);"},'+
+//        '{"name":"updateList","value":"codeLib.channelForm();"},'+
+//        '{"name":"search","value":"codeLib.search4more();"}]}';
+//
+//    var obj = JSON.parse(menu);
+//
+//  console.log(obj.menu instanceof Array);
+//
+
+
+
     document.getElementById("getOnline").addEventListener("click", function(){
       document.getElementById("onlinechannels").innerHTML = '';
       codeLib.getChannels().forEach(function(item){

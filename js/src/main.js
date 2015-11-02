@@ -14,6 +14,7 @@ define(['Codelib','jquery'],function(Codelib,$){
     var apiurl = "streams";
       codeLib.gotjson(apiurl,item,client_id)
       .done(function(result) {
+
         if(result.stream != null) {
           var display_name;
           var channel_logo;
@@ -83,7 +84,7 @@ define(['Codelib','jquery'],function(Codelib,$){
 
                 //TODO place holder thumbnails for null results
 
-              $('#offchannels').append('<a target="_blank" href="http://www.twitch.tv/'+item+'">'+
+              $('#onlinechannels').append('<a target="_blank" href="http://www.twitch.tv/'+item+'">'+
                   '<div class="channel no-gutter col-md-2">' +
                   '<div class="logo col-md-3"><img src='+channel_logo+' alt=""/></div>'+
                   '<div class="name col-md-9">'+display_name+'</div>' +

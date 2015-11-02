@@ -135,6 +135,7 @@ body{
 }
 .pure-drawer ul > li{
   text-transform: uppercase;
+  font-size: 1.25em;
 }
 
 a:focus, a:hover {
@@ -151,4 +152,10 @@ a:focus, a:hover {
 }
 #about{
   font-size: 2em;
+}
+#instructionDiv{
+  font-size: 1.5em;
+}
+#twitch_glyph{
+  font-size: 0.8em;
 }

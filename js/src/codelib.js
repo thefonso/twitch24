@@ -233,10 +233,7 @@ define(function() {
             var channel_name  = node.channel.display_name;
             var game_name     = node.game;
             var followers     = node.channel.followers;
-
-            //$('#bottomDiv').fadeIn(5000,function(){
               $('#results').after('<li><h3>'+channel_name+'</h3><p> '+game_name+' (followers:'+followers+')</p></li>').fadeIn(5000);
-            //});
           });
         })
         .fail(function (result) {
@@ -246,39 +243,21 @@ define(function() {
   };
 
   Codelib.prototype.search4more = function(){
-    var oneColumn = document.createElement('div');
-    oneColumn.setAttribute('class','search col-md-6');
-    oneColumn.setAttribute('id','searchDiv');
-    // TODO: type game in search field,
-
     // TODO: add a channel to current list
 
-    var topDiv = document.createElement('div');
-    topDiv.setAttribute('id','topDiv');
-    topDiv.setAttribute('class','col-md-12');
-
-    var uList     = document.createElement('ul');
-    uList.setAttribute('id','searchElement');
-    var listItem  = document.createElement('li');
-
-    var inputElementOne = document.createElement('input');
-    inputElementOne.type = "text";
-    inputElementOne.id = 'searchBox';
-    inputElementOne.value = 'starcraft';
-
-    var inputElementTwo = document.createElement('input');
-    inputElementTwo.type = "button";
-    inputElementTwo.value = "go";
-
-    document.getElementById("onlinechannels").appendChild(oneColumn).appendChild(topDiv).appendChild(uList).appendChild(listItem).appendChild(inputElementOne);
-    document.getElementById("onlinechannels").appendChild(oneColumn).appendChild(topDiv).appendChild(uList).appendChild(listItem).appendChild(inputElementTwo);
+    $('#onlinechannels').append('<div class="search col-md-6" id="searchDiv">' +
+        '<div id="topDiv" class="col-md-12"><ul id="searchElement"><li>' +
+        '<input id="searchBox" value="starcraft" type="text"/>' +
+        '<input id="goButton" value="go" type="button"/>' +
+        '</li></ul></div></div>' +
+        '<div class="channels col-md-3" id="channels1"></div><div class="channels col-md-3" id="channels2"></div>');
 
     $('#topDiv').after('<div id="bottomDiv" class="col-md-12"><ul><li id="results">results:-----</li></ul></div>');
     $('#bottomDiv').after('<div id="instructionDiv" class="col-md-12"><h1>Instructions:</h1><p>Enter and search for the name of a game you want to track. Channels related to that game will be displayed after a few seconds. Copy the name of a channel into one of the fields on the left, press "update" to save that channel. Then simply go to the allchannels page and start tracking. </p></div>');
     $('#bottomDiv').hide();
 
       (function () {
-        inputElementTwo.addEventListener('click', function () {
+        $('#goButton').click( function () {
           //remove li after first one with id 'results'...
           $('#results').nextAll().remove();
           // TODO: game_name, channel, followers
@@ -289,65 +268,30 @@ define(function() {
         });
       })();
 
-    //TODO col2 see all current channel names
-    var twoColumn = document.createElement('div');
-    twoColumn.setAttribute('class','channels col-md-3');
-    twoColumn.setAttribute('id','channels1');
-
-    var threeColumn = document.createElement('div');
-    threeColumn.setAttribute('class','channels col-md-3');
-    threeColumn.setAttribute('id','channels2');
-
     for (var i = 0; i <= 11; i++){
       var key = localStorage.key(i);
       var value = localStorage[key];
-      var uList     = document.createElement('ul');
-      var listItem  = document.createElement('li');
-
-      var inputElementOne = document.createElement('input');
-      inputElementOne.type = "text";
-      inputElementOne.id = key;
-      inputElementOne.value = value;
-
-      var inputElementTwo = document.createElement('input');
-      inputElementTwo.type = "button";
-      inputElementTwo.value = "update";
       (function (i) {
-        inputElementTwo.addEventListener('click', function () {
+        $('#updateButton').click( function () {
           var newValue = document.getElementById(i).value;
           localStorage.setItem(i, newValue);
           alert("updated: go to front page to see changes" + newValue);
         });
       })(i);
-
-      document.getElementById("onlinechannels").appendChild(twoColumn).appendChild(uList).appendChild(listItem).appendChild(inputElementOne);
-      document.getElementById("onlinechannels").appendChild(twoColumn).appendChild(uList).appendChild(listItem).appendChild(inputElementTwo);
+      $('#channels1').append('<ul><li><input id="'+key+'" value="'+value+'" type="text"><input id="updateButton" type="Button" value="update"></li></ul>');
     }
 
     for (var i = 12; i <= 23; i++){
       var key = localStorage.key(i);
       var value = localStorage[key];
-      var uList     = document.createElement('ul');
-      var listItem  = document.createElement('li');
-
-      var inputElementOne = document.createElement('input');
-      inputElementOne.type = "text";
-      inputElementOne.id = key;
-      inputElementOne.value = value;
-
-      var inputElementTwo = document.createElement('input');
-      inputElementTwo.type = "button";
-      inputElementTwo.value = "update";
       (function (i) {
-        inputElementTwo.addEventListener('click', function () {
+        $('#updateButton').click(function () {
           var newValue = document.getElementById(i).value;
           localStorage.setItem(i, newValue);
           alert("updated: go to front page to see changes" + newValue);
         });
       })(i);
-
-      document.getElementById("onlinechannels").appendChild(threeColumn).appendChild(uList).appendChild(listItem).appendChild(inputElementOne);
-      document.getElementById("onlinechannels").appendChild(threeColumn).appendChild(uList).appendChild(listItem).appendChild(inputElementTwo);
+      $('#channels2').append('<ul><li><input id="'+key+'" value="'+value+'" type="text"><input id="updateButton" type="Button" value="update"></li></ul>');
     }
 
   };

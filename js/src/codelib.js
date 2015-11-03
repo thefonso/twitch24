@@ -235,7 +235,7 @@ define(function() {
             var followers     = node.channel.followers;
 
             //$('#bottomDiv').fadeIn(5000,function(){
-              $('#results').after('<li>'+channel_name+'</li>').fadeIn(5000);
+              $('#results').after('<li><h3>'+channel_name+'</h3><p> '+game_name+' (followers:'+followers+')</p></li>').fadeIn(5000);
             //});
           });
         })

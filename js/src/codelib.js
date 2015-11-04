@@ -188,7 +188,7 @@ define(function() {
           '<div class="logo col-md-2"><img src='+channel_logo+' alt=""/></div>'+
           '<div class="name col-md-10">'+display_name+'</div>' +
           '</div>'+
-          '<div class="bio col-md-12">'+bio_result.substring(0,95)+"..."+'</div>' +
+          '<div class="bio col-md-12">'+bio_result.substring(0,80)+"..."+'</div>' +
           '<div class="status red col-md-12">'+txtstatus+'</div>' +
           '</div></a>'
       );

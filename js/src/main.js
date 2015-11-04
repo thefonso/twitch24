@@ -47,7 +47,7 @@ define(['Codelib','jquery'],function(Codelib,$){
 
     addClickHandler("getOffline", function(){
       codeLib.getChannels().forEach(function(item){
-        codeLib.offline(item,client_id);
+        codeLib.offlineOnly(item,client_id);
       });
     });
 

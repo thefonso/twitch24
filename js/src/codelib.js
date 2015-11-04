@@ -15,7 +15,6 @@ define(function() {
     return (a + b);
   };
 
-  //methods
   Codelib.prototype.gotjson = function(apiurl,channel,client_id) {
     return $.getJSON("https://api.twitch.tv/kraken/"+apiurl+"/"+channel+client_id)
   };
@@ -89,48 +88,105 @@ define(function() {
 
     var apiurl = "users";
     Codelib.prototype.gotjson(apiurl,item,client_id)
-        .done(function(result) {
-          var display_name;
-          var channel_logo;
-          var bio_result;
-          var txtstatus = 'offline';
-          var item = item+'/profile';
+    .done(function(result) {
+      var display_name;
+      var channel_logo;
+      var bio_result;
+      var txtstatus = 'offline';
+      var item = item+'/profile';
 
-          if(result.display_name != null){
-            display_name = result.display_name;
-          }else{
-            display_name = 'empty';
-          }
+      if(result.display_name != null){
+        display_name = result.display_name;
+      }else{
+        display_name = 'empty';
+      }
 
-          if(result.logo != null){
-            channel_logo = result.logo;
-          }else{
-            channel_logo = 'images/twitch.png';
-          }
+      if(result.logo != null){
+        channel_logo = result.logo;
+      }else{
+        channel_logo = 'images/twitch.png';
+      }
 
-          if(result.bio != null){
-            bio_result = result.bio;
-          }else{
-            bio_result = 'empty';
-          }
+      if(result.bio != null){
+        bio_result = result.bio;
+      }else{
+        bio_result = 'empty';
+      }
 
-          //TODO place holder thumbnails for null results
+      //TODO place holder thumbnails for null results
 
-          $('#onlinechannels').append('<a target="_blank" href="http://www.twitch.tv/'+item+'">'+
-              '<div class="channel no-gutter col-md-2">' +
-              '<div class="row">' +
-              '<div class="logo col-md-2"><img src='+channel_logo+' alt=""/></div>'+
-              '<div class="name col-md-10">'+display_name+'</div>' +
-              '</div>'+
-              '<div class="bio col-md-12">'+bio_result.substring(0,95)+"..."+'</div>' +
-              '<div class="status red col-md-12">'+txtstatus+'</div>' +
-              '</div></a>');
+      $('#onlinechannels').append('<a target="_blank" href="http://www.twitch.tv/'+item+'">'+
+          '<div class="channel no-gutter col-md-2">' +
+          '<div class="row">' +
+          '<div class="logo col-md-2"><img src='+channel_logo+' alt=""/></div>'+
+          '<div class="name col-md-10">'+display_name+'</div>' +
+          '</div>'+
+          '<div class="bio col-md-12">'+bio_result.substring(0,95)+"..."+'</div>' +
+          '<div class="status red col-md-12">'+txtstatus+'</div>' +
+          '</div></a>');
 
-        })
-        .fail(function(x) {
-          // Tell the user something bad happened
-        });
+    })
+    .fail(function(x) {
+      // Tell the user something bad happened
+    });
   };
+
+  Codelib.prototype.offlineOnly = function offlineOnly(item,client_id){
+    var apiurl = "streams";
+    Codelib.prototype.gotjson(apiurl,item,client_id)
+        .done(function(result) {
+          if (result.stream != null) {
+
+          }else{
+            var apiurl = "users";
+            Codelib.prototype.gotjson(apiurl,item,client_id)
+            .done(function(result) {
+              var display_name;
+              var channel_logo;
+              var bio_result;
+              var txtstatus = 'offline';
+              var item = item+'/profile';
+
+              if(result.display_name != null){
+                display_name = result.display_name;
+              }else{
+                display_name = 'empty';
+              }
+
+              if(result.logo != null){
+                channel_logo = result.logo;
+              }else{
+                channel_logo = 'images/twitch.png';
+              }
+
+              if(result.bio != null){
+                bio_result = result.bio;
+              }else{
+                bio_result = 'empty';
+              }
+
+              //TODO place holder thumbnails for null results
+
+              $('#onlinechannels').append('<a target="_blank" href="http://www.twitch.tv/'+item+'">'+
+                  '<div class="channel no-gutter col-md-2">' +
+                  '<div class="row">' +
+                  '<div class="logo col-md-2"><img src='+channel_logo+' alt=""/></div>'+
+                  '<div class="name col-md-10">'+display_name+'</div>' +
+                  '</div>'+
+                  '<div class="bio col-md-12">'+bio_result.substring(0,95)+"..."+'</div>' +
+                  '<div class="status red col-md-12">'+txtstatus+'</div>' +
+                  '</div></a>');
+
+            })
+            .fail(function(x) {
+              // Tell the user something bad happened
+            });
+          }
+        });
+
+
+  };
+
 //  TODO - use this to grab the top games
 //  Codelib.prototype.gottop = function() {
 //    return $.getJSON("https://api.twitch.tv/kraken/games/top")

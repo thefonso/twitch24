@@ -15,6 +15,39 @@ define(function() {
     return (a + b);
   };
 
+  Codelib.prototype.default_channels = function(){
+
+    var channels = [
+      'habathcx',
+      'terakilobyte',
+      'freecodecamp',
+      'medrybw',
+      'thomasballinger',
+      'noobs2ninjas',
+      'RobotCaleb',
+      'beohoff',
+      'GeoffStorbeck',
+      'leagueoflegends',
+      'ThunderCast',
+      'esl_csgo',
+      'summit1g',
+      'izakooo',
+      'sodapoppin',
+      'stormstudio_csgo_ru',
+      'imaqtpie',
+      'dfunker0',
+      'LeagueOfMichael',
+      'Quinnell',
+      'Gaungade',
+      'cokeduppatty',
+      'snipealot2',
+      'comster404'
+      //'brunofin'
+    ];
+
+    return channels;
+  };
+
   Codelib.prototype.gotjson = function(apiurl,channel,client_id) {
     return $.getJSON("https://api.twitch.tv/kraken/"+apiurl+"/"+channel+client_id)
   };
@@ -25,9 +58,43 @@ define(function() {
         .done(function(result) {
           if (result.stream != null) {
             Codelib.prototype.online(item, client_id);
+          }else if(result.status === 422 ) {
+            console.dir(result);
+            Codelib.prototype.status404(item, client_id);
           }else{
             Codelib.prototype.offline(item, client_id);
           }
+        });
+  };
+
+  Codelib.prototype.status404 = function status404(item,client_id){
+
+    var apiurl = "streams";
+    Codelib.prototype.gotjson(apiurl,item,client_id)
+        .done(function(result) {
+
+              var display_name = item;
+              var channel_logo = 'images/twitch.png';
+              var bio_result = result.message;
+              var txtstatus = 'unavailable';
+              var itemProfile = item+'/profile';
+
+              //TODO place holder thumbnails for null results
+
+              $('#onlinechannels').append('<a target="_blank" href="http://www.twitch.tv/'+itemProfile+'">'+
+                  '<div class="channel unavailable no-gutter col-md-2">' +
+                  '<div class="row">' +
+                  '<div class="logo col-md-2"><img src='+channel_logo+' alt=""/></div>'+
+                  '<div class="name col-md-10">'+display_name+'</div>' +
+                  '</div>'+
+                  '<div class="bio col-md-12">'+bio_result.substring(0,95)+"..."+'</div>' +
+                  '<div class="status red col-md-12">'+txtstatus+'</div>' +
+                  '</div></a>'
+              );
+            }
+        )
+        .fail(function(x) {
+          // Tell the user something bad happened
         });
   };
 
@@ -123,7 +190,8 @@ define(function() {
           '</div>'+
           '<div class="bio col-md-12">'+bio_result.substring(0,95)+"..."+'</div>' +
           '<div class="status red col-md-12">'+txtstatus+'</div>' +
-          '</div></a>');
+          '</div></a>'
+      );
 
     })
     .fail(function(x) {
@@ -191,39 +259,6 @@ define(function() {
 //  Codelib.prototype.gottop = function() {
 //    return $.getJSON("https://api.twitch.tv/kraken/games/top")
 //  };
-
-  Codelib.prototype.default_channels = function(){
-
-    var channels = [
-      'habathcx',
-      'terakilobyte',
-      'freecodecamp',
-      'medrybw',
-      'thomasballinger',
-      'noobs2ninjas',
-      'RobotCaleb',
-      'beohoff',
-      'GeoffStorbeck',
-      'leagueoflegends',
-      'ThunderCast',
-      'esl_csgo',
-      'summit1g',
-      'izakooo',
-      'sodapoppin',
-      'stormstudio_csgo_ru',
-      'imaqtpie',
-      'dfunker0',
-      'LeagueOfMichael',
-      'Quinnell',
-      'Gaungade',
-      'cokeduppatty',
-      'snipealot2',
-      'comster404'
-      //'brunofin'
-    ];
-
-     return channels;
-  };
 
   Codelib.prototype.setChannels = function(array){
     array.forEach(function(element,index){
@@ -352,5 +387,11 @@ define(function() {
 
   };
 
+  Codelib.prototype.addClickHandler = function addClickHandler(target,handler){
+    document.getElementById(target).addEventListener("click", function(){
+      document.getElementById("onlinechannels").innerHTML = '';
+      handler()
+    });
+  }
   return Codelib;
 });

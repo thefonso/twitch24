@@ -53,6 +53,10 @@ body{
 #onlinechannels ul{
   list-style: none;
 }
+.unavailable{
+  background-color: #3b7cbc !important;
+  border: 0.2em solid #53A7FF !important;
+}
 .channel{
   background-color: #53A7FF;
   color: white;

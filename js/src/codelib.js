@@ -392,6 +392,6 @@ define(function() {
       document.getElementById("onlinechannels").innerHTML = '';
       handler()
     });
-  }
+  };
   return Codelib;
 });

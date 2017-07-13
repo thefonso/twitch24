@@ -49,7 +49,7 @@ define(function() {
   };
 
   Codelib.prototype.gotjson = function(apiurl,channel,client_id) {
-    return $.getJSON("https://api.twitch.tv/kraken/"+apiurl+"/"+channel+client_id)
+    return $.getJSON("https://wind-bow.gomix.me/twitch-api/"+apiurl+"/"+channel+client_id)
   };
 
   Codelib.prototype.showAll = function showAll(item,client_id){
@@ -316,7 +316,7 @@ define(function() {
   };
 
   Codelib.prototype.searchgames = function(ask){
-    return $.getJSON("https://api.twitch.tv/kraken/search/streams?limit=10&offset=10&query="+ask)
+    return $.getJSON("https://wind-bow.gomix.me/twitch-api/search/streams?limit=10&offset=10&query="+ask)
         .done(function(result){
           console.dir(result);
           result.streams.forEach(function(node){

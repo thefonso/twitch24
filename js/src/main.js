@@ -10,7 +10,7 @@ define(['Codelib','jquery'],function(Codelib,$){
   $(document).ready(function(){
     //TODO rebuild as fullstack MEAN app so env var can be set and
     // OAuth can be used...since the next line is evil.
-    var client_id = '?client_id=l91ohh8zyji3s3xztrc3w5j8r21wuak&callback=?';
+      var client_id = '?callback=?';
 
     if (window.localStorage.length == 0){
       var array_of_channels = [];

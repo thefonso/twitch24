@@ -40,8 +40,8 @@ define([""],function () {
       'Gaungade',
       'cokeduppatty',
       'snipealot2',
-      'esl_sc2'
-      //'brunofin'
+      'esl_sc2',
+      'Lana_Lux'
     ];
 
     return channels;

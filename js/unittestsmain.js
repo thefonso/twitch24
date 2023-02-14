@@ -13,7 +13,6 @@ requirejs.config({
     ],
     'QUnit':'lib/qunit/qunit-1.19.0',
     'Codelib':'src/codelib',
-
   },
   shim: {
     'QUnit':{

@@ -1,8 +1,7 @@
 "use strict";
+//const request = require('request')
 
-//TODO BIG - refactor this file...violating SOLID via method calls inside of methods
-
-define(function () {
+define([""],function () {
   //constructor
   function Codelib(a, b) {
     // if u had passed vars, maybe future channel names
@@ -48,25 +47,30 @@ define(function () {
     return channels;
   };
 
-  //TWITCH_CLIENT_ID='9j6pgungftwt6hvhh7r5kuxcogq6kn';
-  //TWITCH_CLIENT_SECRET='mjbtj9xdrux8hc81d2awe5r1qma0kh';
+  // Codelib.prototype.callAjax = function (AJAXProps) {
+  // console.log("PING callAJAX: ")
+  //  const accessToken = response.access_token;
 
-  const AJAXProps = {
-    url: "https://id.twitch.tv/oauth2/token?client_id=1g1x4wqwbye3jzo23y84h34bom5duwuclient_secret=1xcgo8mlxte1zbllr9ngy1pq9hhclh&grant_type=client_credentials",
-    method: "POST"
-  };
+  //   const AJAXProps = {
+  //     url: "https://api.twitch.tv/helix/streams/adrianachechik_?callback=?",
+  //     header: {
+  //       "client-ID": "",
+  //       "Authorization": `Bearer ${accessToken}`
+  //     }
+  //   };
 
-  Codelib.prototype.callAjax = function (AJAXProps) {
+  // }
 
-  }
 
   // TODO build your own twitch-api back-end
   Codelib.prototype.gotjson = function (apiurl, channel, client_id) {
     console.log("apiurl: " + apiurl);
     console.log("channel: " + channel);
     console.log("client_id: " + client_id);
-    return $.getJSON("https://twitch-proxy.freecodecamp.rocks/twitch-api/" + apiurl + "/" + channel + client_id)
+    // TODO need to build my own version of the api app
+    return $.getJSON("http://localhost:3000/twitch-api/" + apiurl + "/" + channel + client_id)
   };
+
 
   Codelib.prototype.showAll = function showAll(item, client_id) {
     var apiurl = "streams";
@@ -113,7 +117,8 @@ define(function () {
         // Tell the user something bad happened
       });
   };
-
+  // when triggered by eventhandler in main.js, this will display snippet of html.
+  // this is "like" a react component in concept
   Codelib.prototype.online = function online(item, client_id) {
 
     var apiurl = "streams";
@@ -164,6 +169,7 @@ define(function () {
       )
       .fail(function (x) {
         // Tell the user something bad happened
+        console.log("OOPS...", x)
       });
   };
 

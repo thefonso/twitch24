@@ -47,19 +47,6 @@ define([""],function () {
     return channels;
   };
 
-  // Codelib.prototype.callAjax = function (AJAXProps) {
-  // console.log("PING callAJAX: ")
-  //  const accessToken = response.access_token;
-
-  //   const AJAXProps = {
-  //     url: "https://api.twitch.tv/helix/streams/adrianachechik_?callback=?",
-  //     header: {
-  //       "client-ID": "",
-  //       "Authorization": `Bearer ${accessToken}`
-  //     }
-  //   };
-
-  // }
 
 
   // TODO build your own twitch-api back-end

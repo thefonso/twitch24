@@ -7,14 +7,6 @@ define(['Codelib', 'jquery'], function (Codelib, $) {
   //show online - and - what is streaming
   //show offline
 
-  //let TWITCH_CLIENT_ID = '';
-  //let TWITCH_CLIENT_SECRET = '';
-
-
-  //const AJAXProps = {
-  //  url: "https://id.twitch.tv/oauth2/token?client_id=" + TWITCH_CLIENT_ID + "&client_secret=" + TWITCH_CLIENT_SECRET + "&grant_type=client_credentials",
-  //  method: "POST"
-  //};
   $(document).ready(function () {
     // TODO APP STARTS HERE
     // This will be our UseState...
@@ -22,7 +14,6 @@ define(['Codelib', 'jquery'], function (Codelib, $) {
     // OAuth can be used...since the next line is evil.
 
     //codeLib.callAjax(AJAXProps)
-    //codeLib.getToken()
 
     // TODO this block is the entire main app
     var callback = '?callback=?';//I don't recall why this is here

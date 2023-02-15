@@ -1,7 +1,7 @@
 "use strict";
 //const request = require('request')
 
-define([""],function () {
+define([""], function () {
   //constructor
   function Codelib(a, b) {
     // if u had passed vars, maybe future channel names
@@ -44,40 +44,47 @@ define([""],function () {
       'Lana_Lux'
     ];
 
-    return channels;
+    var legacy_channels = [
+      'ESL_SC2', 'OgamingSC2', 'cretetion', 'freecodecamp', 'storbeck', 'habathcx', 'RobotCaleb', 'noobs2ninjas'
+    ];
+
+
+    return legacy_channels;
   };
 
 
 
   // TODO build your own twitch-api back-end
-  Codelib.prototype.gotjson = function (apiurl, channel, client_id) {
-    console.log("apiurl: " + apiurl);
+  Codelib.prototype.gotjson = function (type, channel, callback) {
+    console.log("apiurl: " + type);
     console.log("channel: " + channel);
-    console.log("client_id: " + client_id);
+    console.log("callback: " + callback);
     // TODO need to build my own version of the api app
-    return $.getJSON("http://localhost:3000/twitch-api/" + apiurl + "/" + channel + client_id)
+    // old end point: https://api.twitch.tv/kraken/"
+    // current FCC end point https://twitch-proxy.freecodecamp.rocks/twitch-api/
+    return $.getJSON("https://twitch-proxy.freecodecamp.rocks/twitch-api/" + type + "/" + channel + callback)
   };
 
 
-  Codelib.prototype.showAll = function showAll(item, client_id) {
+  Codelib.prototype.showAll = function showAll(item, callback) {
     var apiurl = "streams";
-    Codelib.prototype.gotjson(apiurl, item, client_id)
+    Codelib.prototype.gotjson(apiurl, item, callback)
       .done(function (result) {
         if (result.stream != null) {
-          Codelib.prototype.online(item, client_id);
+          Codelib.prototype.online(item, callback);
         } else if (result.status === 422) {
           console.dir(result);
-          Codelib.prototype.status404(item, client_id);
+          Codelib.prototype.status404(item, callback);
         } else {
-          Codelib.prototype.offline(item, client_id);
+          Codelib.prototype.offline(item, callback);
         }
       });
   };
 
-  Codelib.prototype.status404 = function status404(item, client_id) {
+  Codelib.prototype.status404 = function status404(item, callback) {
 
     var apiurl = "streams";
-    Codelib.prototype.gotjson(apiurl, item, client_id)
+    Codelib.prototype.gotjson(apiurl, item, callback)
       .done(function (result) {
 
         var display_name = item;
@@ -106,10 +113,10 @@ define([""],function () {
   };
   // when triggered by eventhandler in main.js, this will display snippet of html.
   // this is "like" a react component in concept
-  Codelib.prototype.online = function online(item, client_id) {
+  Codelib.prototype.online = function online(item, callback) {
 
     var apiurl = "streams";
-    Codelib.prototype.gotjson(apiurl, item, client_id)
+    Codelib.prototype.gotjson(apiurl, item, callback)
       .done(function (result) {
 
         var display_name;
@@ -160,12 +167,12 @@ define([""],function () {
       });
   };
 
-  Codelib.prototype.offline = function offline(item, client_id) {
+  Codelib.prototype.offline = function offline(item, callback) {
     console.log("offline called");
     //console.log("item: " + item);
     var apiurl = "users";
     //TODO why is this line failing?
-    Codelib.prototype.gotjson(apiurl, item, client_id)
+    Codelib.prototype.gotjson(apiurl, item, callback)
       .done(function (result) {
         console.log("result")
         console.log(result)
@@ -212,15 +219,15 @@ define([""],function () {
       });
   };
 
-  Codelib.prototype.offlineOnly = function offlineOnly(item, client_id) {
+  Codelib.prototype.offlineOnly = function offlineOnly(item, callback) {
     var apiurl = "streams";
-    Codelib.prototype.gotjson(apiurl, item, client_id)
+    Codelib.prototype.gotjson(apiurl, item, callback)
       .done(function (result) {
         if (result.stream != null) {
 
         } else {
           var apiurl = "users";
-          Codelib.prototype.gotjson(apiurl, item, client_id)
+          Codelib.prototype.gotjson(apiurl, item, callback)
             .done(function (result) {
               var display_name;
               var channel_logo;
@@ -320,9 +327,9 @@ define([""],function () {
 
 
   };
-
+  //TODO pull version from package.json value
   Codelib.prototype.aboutPage = function () {
-    $('#onlinechannels').append('<div id="about"><h1>About this app: Twitch24 v0.1.0 </h1>' +
+    $('#onlinechannels').append('<div id="about"><h1>About this app: Twitch24 v1.2.0 </h1>' +
       '<p>Proof of concept: to experiment with qunit, pure javascript, AMD module design, requireJS, with a touch of jquery and Bootstrap.</p>' +
       '<p>This is alpha software. A non-angular, single page app that pulls data from the Twitch api and allows the user to track the online/offline status of 24 user chosen channels which are stored via localStorage</p>' +
       '</div>');

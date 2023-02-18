@@ -61,8 +61,9 @@ define([""], function () {
     console.log("callback: " + callback);
     // TODO need to build my own version of the api app
     // old end point: https://api.twitch.tv/kraken/"
-    // current FCC end point https://twitch-proxy.freecodecamp.rocks/twitch-api/
-    return $.getJSON("https://twitch-proxy.freecodecamp.rocks/twitch-api/" + type + "/" + channel + callback)
+    // 
+    //return $.getJSON("https://twitch-proxy.freecodecamp.rocks/twitch-api/" + type + "/" + channel + callback)
+    return $.getJSON("https://twitch24-api-proxy.onrender.com/twitch-api/" + type + "/" + channel + callback)
   };
 
 

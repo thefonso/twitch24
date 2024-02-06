@@ -1,6 +1,7 @@
 "use strict";
 define(['Codelib','jquery'], function(Codelib,$){
   var run = function(){
+
     QUnit.test('code should return the sum of the two supplied numbers.',function(assert){
       var codelib = new Codelib();
       assert.equal(codelib.code(1,1),2, 'The return should be 2.');
@@ -17,8 +18,9 @@ define(['Codelib','jquery'], function(Codelib,$){
       .then(function(result){
         assert.notEqual(result.stream,null, 'should not be true');
         done();
-      }).catch(function(error){
-        // console.error("Promise rejected:",error);
+      })
+      .catch(function(error){
+        console.error("Promise rejected:",error);
         done(new Error("Promise rejected"));
       });
 

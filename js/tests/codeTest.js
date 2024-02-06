@@ -13,9 +13,13 @@ define(['Codelib','jquery'], function(Codelib,$){
       var done = assert.async();
       var channel = "freecodecamp";
       //run the .done call back here to test result
-      codelib.gotjson(channel).done(function(result){
+      codelib.gotjson(channel)
+      .then(function(result){
         assert.notEqual(result.stream,null, 'should not be true');
         done();
+      }).catch(function(error){
+        // console.error("Promise rejected:",error);
+        done(new Error("Promise rejected"));
       });
 
     });
@@ -24,6 +28,7 @@ define(['Codelib','jquery'], function(Codelib,$){
       var codelib = new Codelib();
       assert.ok(codelib.channels() instanceof Array,'should contain array')
     });
+
     QUnit.skip("I can return an array list of offline streamers ",function(assert){
       var codelib = new Codelib();
     });

@@ -49,7 +49,7 @@ define([""], function () {
     ];
 
 
-    return legacy_channels;
+    return channels;
   };
 
 

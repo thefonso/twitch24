@@ -75,9 +75,9 @@ define([""], function () {
           Codelib.prototype.online(item, callback);
         } else if (result.status === 422) {
           console.dir(result);
-          Codelib.prototype.status404(item, callback);
+          // Codelib.prototype.status404(item, callback);
         } else {
-          Codelib.prototype.offline(item, callback);
+          Codelib.prototype.offlineOnly(item, callback);
         }
       });
   };
@@ -181,7 +181,7 @@ define([""], function () {
         var channel_logo;
         var bio_result;
         var txtstatus = 'offline';
-        var item = result.display_name + '/profile';
+        var item_profile = result.display_name + '/profile';
         //console.log("INSIDE gotjson " + result.display_name);
         if (result.display_name != null) {
           display_name = result.display_name;
@@ -203,7 +203,7 @@ define([""], function () {
 
         //TODO place holder thumbnails for null results
 
-        $('#onlinechannels').append('<a target="_blank" href="http://www.twitch.tv/' + item + '">' +
+        $('#onlinechannels').append('<a target="_blank" href="http://www.twitch.tv/' + item_profile + '">' +
           '<div class="channel no-gutter col-md-2">' +
           '<div class="row">' +
           '<div class="logo col-md-2"><img src=' + channel_logo + ' alt=""/></div>' +
@@ -224,8 +224,9 @@ define([""], function () {
     var apiurl = "streams";
     Codelib.prototype.gotjson(apiurl, item, callback)
       .done(function (result) {
-        if (result.stream != null) {
-
+        console.log("PING", result.status)
+        if (result.stream != null || result.status == 404) {
+          //what does it mean here? it's offline?
         } else {
           var apiurl = "users";
           Codelib.prototype.gotjson(apiurl, item, callback)
